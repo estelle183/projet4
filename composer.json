@@ -1,0 +1,16 @@
+{
+    "name": "estellelorrillere/projet4",
+    "description": "projet4",
+    "authors": [
+        {
+            "name": "estelle183",
+            "email": "estelle183@yahoo.fr"
+        }
+    ],
+    "autoload": {
+    	"psr-4":{
+    		"App\\": "src/"
+    	}
+    },
+    "require": {}
+}
