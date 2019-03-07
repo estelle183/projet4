@@ -86,12 +86,11 @@ class Chapters
     }
 
 
-    public function setContent($content): void
+    public function setContent(string $content): void
     {
-        if (is_string($content))
-        {
+
             $this->content = $content;
-        }
+
     }
 
 

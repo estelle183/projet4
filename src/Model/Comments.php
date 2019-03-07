@@ -4,106 +4,128 @@ namespace App\Model;
 
 class Comments
 {
-    private $_id;
-    private $_chapter_id;
-    private $_author;
-    private $_comment;
-    private $_comment_date;
+    private $id;
+    private $chapter_id;
+    private $author;
+    private $comment;
+    private $comment_date;
+    private $reported;
+    private $moderate;
 
-    /**
-     * @return mixed
-     */
-    public function getId()
-    {
-        return $this->_id;
-    }
 
-    /**
-     * @return mixed
-     */
-    public function getChapterId()
-    {
-        return $this->_chapter_id;
-    }
 
-    /**
-     * @return mixed
-     */
-    public function getAuthor()
-    {
-        return $this->_author;
-    }
 
-    /**
-     * @return mixed
-     */
-    public function getComment()
+    public function __construct($values = null)
     {
-        return $this->_comment;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getCommentDate()
-    {
-        return $this->_comment_date;
-    }
-
-    /**
-     * @param mixed $id
-     */
-    public function setId($id): void
-    {
-        $id = (int) $id;
-        if ($id > 0)
+        if ($values != null)
         {
-            $this->_id = $id;
+            $this->hydrate($values);
         }
     }
 
-    /**
-     * @param mixed $chapter_id
-     */
+    public function hydrate(array $values)
+    {
+        foreach ($values as $key=>$value)
+        {
+            $elements = explode('_', $key);
+            $newKey = '';
+            foreach ($elements as $el)
+            {
+                $newKey .= ucfirst($el);
+            }
+            $method = 'set'. ucfirst($newKey);
+            if (method_exists($this, $method))
+            {
+                $this->$method($value);
+            }
+        }
+        return $this;
+    }
+
+
+    public function getId(): ?int
+    {
+        return $this->id;
+    }
+
+    public function setId(int $id): void
+    {
+
+    $this->id = $id;
+
+    }
+
+    public function getChapterId(): ?int
+    {
+        return $this->chapter_id;
+    }
+
     public function setChapterId($chapter_id): void
     {
         $chapter_id = (int) $chapter_id;
         if ($chapter_id > 0)
         {
-            $this->_chapter_id = $chapter_id;
+            $this->chapter_id = $chapter_id;
         }
     }
 
-    /**
-     * @param mixed $author
-     */
-    public function setAuthor($author): void
+    public function getAuthor(): ?string
     {
-        if (is_string($author))
-        {
-            $this->_author = $author;
-        }
+        return $this->author;
     }
 
-    /**
-     * @param mixed $comment
-     */
-    public function setComment($comment): void
+    public function setAuthor(string $author): void
     {
-        if (is_string($comment))
-        {
-            $this->_comment = $comment;
-        }
+
+            $this->author = $author;
+
     }
 
-    /**
-     * @param mixed $comment_date
-     */
+    public function getComment(): ?string
+    {
+        return $this->comment;
+    }
+
+    public function setComment(string $comment): void
+    {
+
+            $this->comment = $comment;
+
+    }
+
+    public function getCommentDate()
+    {
+        return $this->comment_date;
+    }
+
     public function setCommentDate($comment_date): void
     {
         if (is_string($comment_date))
         {
-            $this->_comment_date = $comment_date;
+            $this->comment_date = $comment_date;
         }
+    }
+
+    public function getReported()
+    {
+        return $this->reported;
+    }
+
+
+    public function setReported($reported): void
+    {
+        $this->reported = $reported;
+    }
+
+
+    public function getModerate()
+    {
+        return $this->moderate;
+    }
+
+
+    public function setModerate($moderate): void
+    {
+        $this->moderate = $moderate;
     }
 }
