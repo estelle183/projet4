@@ -24,10 +24,12 @@ class CommentsController
     }
 
 
-    public function reportedComment($id)
+    public function reportedComment(Comments $comments, $chapterId)
     {
         $coManager = new CommentsManager();
-        $result = $coManager->reportedComment($id);
+        $result = $coManager->reportedComment($comments);
+        $_SESSION['flash'] = "Le commentaire a bien été reporté";
+        $flash = $_SESSION['flash'];
         header ('Location: chapitre&id=' . $chapterId);
     }
 

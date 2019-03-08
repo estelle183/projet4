@@ -44,7 +44,7 @@ class CommentsManager extends DbManager
 
     public function ReportedComment(Comments $comment)
     {
-        $req = $this->db->prepare ('UPDATE comments SET reported = true WHERE id = ?');
+        $req = $this->db->prepare ('UPDATE comments SET reported = 1 WHERE id = :id');
         $affectedLines = $req->execute (array(
             'id' => $comment->getId (),
         ));
