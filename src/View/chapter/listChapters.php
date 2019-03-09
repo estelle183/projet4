@@ -1,3 +1,7 @@
+
+<?php ob_start(); include('src/View/nav.php'); $nav = ob_get_clean(); ?>
+
+
 <?php
 ob_start();
 ?>
