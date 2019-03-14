@@ -1,6 +1,6 @@
-/vendor/
+
 vendor/
-/.idea/*
+
 .idea/*
 src/Model/DbManager.php
 

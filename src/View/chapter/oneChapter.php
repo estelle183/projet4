@@ -10,19 +10,16 @@ if(isset($_SESSION['flash'])) {
 <p><?= $result->getCreationDate(); ?></p>
 <p><?= $result->getContent(); ?></p>
 
-<?php
-
-foreach ($result->getComments() as $co) {
-
-    ?>
+<?php foreach ($result->getComments() as $co) : ?>
     <h2><?= $co->getAuthor(); ?></h2>
     <h3><?= $co->getComment();  ?></h3>
     <p><?= $co->getCommentDate(); ?></p>
-    <input action="reportedComment&id=<? $result->getId()?>" type="submit" value="Reporter" />
-    <input type="submit" value="Modérer" />
-    <?php
-}
-?>
+    <?php if($co->getReported() == 0) : ?>
+    <a href="reportedComment&id_chapter=<?= $result->getId();?>&id=<?= $co->getId();?>"> Reporter</a>
+    <?php else : ?>
+    <p>Ce commentaire est signalé</p>
+    <?php endif; ?>
+<?php endforeach; ?>
 
     <form action="addComment&id=<?= $result->getId()?>" method="post">
         <p>

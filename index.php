@@ -43,5 +43,6 @@ if(isset($_POST['pseudo']) && isset($_POST['message']) && isset($_GET['id'])) {
 elseif ($url === 'reportedComment') {
     $comment = new Comments(['id'=>$_GET['id']]);
     $commentController = new CommentsController();
-    $commentController->reportedComment ($id);
+    $commentController->reportedComment ($comment, $_GET['id_chapter']);
+
 }
