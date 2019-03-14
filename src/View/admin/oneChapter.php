@@ -15,20 +15,12 @@ if(isset($_SESSION['flash'])) {
     <h3><?= $co->getComment();  ?></h3>
     <p><?= $co->getCommentDate(); ?></p>
     <?php if($co->getReported() == 0) : ?>
-    <a href="reportedComment&id_chapter=<?= $result->getId();?>&id=<?= $co->getId();?>"> Reporter</a>
+        <a href="reportedComment&id_chapter=<?= $result->getId();?>&id=<?= $co->getId();?>"> Reporter</a>
     <?php else : ?>
-    <p>Ce commentaire est signalé</p>
+        <p>Ce commentaire est signalé</p>
     <?php endif; ?>
 <?php endforeach; ?>
 
-    <form action="addComment&id=<?= $result->getId()?>" method="post">
-        <p>
-            <label for="pseudo">Pseudo</label> : <input type="text" name="pseudo" id="pseudo" required/><br />
-            <label for="message">Message</label> :  <textarea name="message" id="message" required></textarea><br />
-
-            <input type="submit" value="Envoyer" />
-        </p>
-    </form>
 
 
 <?php

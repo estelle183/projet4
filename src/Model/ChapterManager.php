@@ -56,4 +56,7 @@ class ChapterManager extends DbManager
 
         return $chapters;
     }
+
+    //Administration
+
 }

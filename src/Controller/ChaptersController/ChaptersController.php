@@ -2,6 +2,7 @@
 namespace App\Controller\ChaptersController;
 
 
+
 use App\Model\ChapterManager;
 
 class ChaptersController { //Récupère tous les chapitres

@@ -9,7 +9,7 @@
     </head>
 
     <header>
-        <?= $nav ?>
+        <?php require 'nav.php'?>
     </header>
         
     <body>
