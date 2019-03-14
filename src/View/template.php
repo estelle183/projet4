@@ -7,6 +7,10 @@
         <link href="public/css/bootstrap.css" rel="stylesheet" />
 
     </head>
+
+    <header>
+        <?php require 'nav.php'?>
+    </header>
         
     <body>
         <?= $content ?>

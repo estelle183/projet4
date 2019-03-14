@@ -8,6 +8,8 @@ use App\Controller\ChaptersController\ChapterController;
 use App\Model\Chapters;
 use App\Model\Comments;
 use App\Controller\CommentsController\CommentsController;
+use App\Controller\AdminController\AdminChaptersController;
+use App\Controller\AdminController\AdminChapterController;
 
 $url = '';
 if (isset($_GET['url'])) {
@@ -45,4 +47,15 @@ elseif ($url === 'reportedComment') {
     $commentController = new CommentsController();
     $commentController->reportedComment ($comment, $_GET['id_chapter']);
 
+}
+
+elseif ($url ==='adminChapters') {
+    $chapters = new AdminChaptersController();
+    $chapters->adminChaptersPage();
+}
+
+elseif ($url === 'adminChapter') {
+    $chapter = new Chapters(['id'=>$_GET['id']]);
+    $chapterController = new AdminChapterController();
+    $chapterController->adminChapterWithComments($chapter);
 }
