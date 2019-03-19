@@ -14,9 +14,9 @@ class CommentsManager extends DbManager
         $this->db = self::dbConnect ();
     }
 
-    /*public function getChapterComments() // Requête à supprimer ?
+    public function getComments()
     {
-        $req = $this->db->prepare('SELECT author, comment, DATE_FORMAT(comment_date, \'%d/%m/%Y à %Hh%imin%ss\') AS commentDate FROM comments ORDER BY comment_date DESC');
+        $req = $this->db->query('SELECT id, author, comment, DATE_FORMAT(comment_date, \'%d/%m/%Y à %Hh%imin%ss\') AS commentDate, reported, moderate FROM comments ORDER BY comment_date DESC');
         $results = $req->fetchAll(PDO::FETCH_ASSOC);
         $comments = [];
 
@@ -28,7 +28,7 @@ class CommentsManager extends DbManager
 
 
         return $comments;
-    }*/
+    }
 
     public function addChapterComment(Comments $comment) // Insérer un commentaire
     {
@@ -42,7 +42,7 @@ class CommentsManager extends DbManager
         return $affectedLines;
     }
 
-    public function ReportedComment(Comments $comment)
+    public function reportedComment(Comments $comment) // Signaler un commentaire
     {
         $req = $this->db->prepare ('UPDATE comments SET reported = 1 WHERE id = :id');
         $affectedLines = $req->execute (array(
@@ -51,6 +51,16 @@ class CommentsManager extends DbManager
 
         return $affectedLines;
 
+    }
+
+    public function cancelReportedComment(Comments $comment)
+    {
+        $req = $this->db->prepare ('UPDATE comments SET reported = 0 WHERE id = :id');
+        $affectedLines = $req->execute (array(
+            'id' => $comment->getId (),
+        ));
+
+        return $affectedLines;
     }
 }
 

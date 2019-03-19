@@ -3,14 +3,32 @@ ob_start();
 ?>
 <h1>Page Admin</h1>
 
-<?php foreach ($chapters as $chapter) : ?>
+<a href=admin-nouveau-chapitre>Nouveau chapitre</a>
+
+<table class="table">
+    <tr>
+    <th scope="col">Date de création</th>
+    <th scope="col">Titre</th>
+    <th scope="col">Contenu</th>
+    <th scope="col">Modification</th>
+    </tr>
+
+    <?php foreach ($chapters as $chapter) : ?>
+    <tr>
+
+        <td><?= $chapter->getCreationDate();  ?></td>
+        <td><?= $chapter->getTitle(); ?></td>
+        <td><?=substr ($chapter->getContent(), 0, 20); ?>...</td>
+        <td>ddd</td>
+
+    </tr>
+    <?php endforeach; ?>
+
+</table>
 
 
-    <h2><?= $chapter->getTitle(); ?></h2>
-    <p><?= $chapter->getCreationDate();  ?></p>
-    <p><?=substr ($chapter->getContent(), 0, 50); ?>...</p>
-    <em><a href="adminChapter&id=<?= $chapter->getId(); ?>">Suite</a></em>
-<?php endforeach; ?>
+
+
 
 <?php
 $content = ob_get_clean();

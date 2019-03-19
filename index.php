@@ -9,7 +9,9 @@ use App\Model\Chapters;
 use App\Model\Comments;
 use App\Controller\CommentsController\CommentsController;
 use App\Controller\AdminController\AdminChaptersController;
-use App\Controller\AdminController\AdminChapterController;
+use App\Controller\AdminController\AdminCommentsController;
+use App\Controller\AdminController\AdminNewChapterController;
+use App\Controller\AdminController\AdminReportedController;
 
 $url = '';
 if (isset($_GET['url'])) {
@@ -49,13 +51,28 @@ elseif ($url === 'reportedComment') {
 
 }
 
-elseif ($url ==='adminChapters') {
-    $chapters = new AdminChaptersController();
-    $chapters->adminChaptersPage();
+elseif ($url === 'admin-modération') {
+    $comments = new AdminCommentsController();
+    $comments->adminReportedComments();
 }
 
-elseif ($url === 'adminChapter') {
-    $chapter = new Chapters(['id'=>$_GET['id']]);
-    $chapterController = new AdminChapterController();
-    $chapterController->adminChapterWithComments($chapter);
+elseif ($url === 'admin-liste-chapitres') {
+    $chapters = new AdminChaptersController();
+    $chapters->adminChaptersPage();
+        }
+
+elseif ($url === 'addChapter') {
+    $newChapter = new AdminNewChapterController();
+    $newChapter->addChapter ($_POST['title'], $_POST['content']);
+}
+
+elseif ($url === 'adminCancelReport') {
+    $comment = new Comments(['id'=>$_GET['id']]);
+    $adminReportedController = new AdminReportedController();
+    $adminReportedController->cancelReportedComment ($comment);
+}
+
+elseif ($url === "admin-nouveau-chapitre") {
+$newChapter = new AdminNewChapterController();
+$newChapter->newChapter();
 }
