@@ -4,12 +4,13 @@ namespace App\Controller\AdminController;
 
 use App\Model\ChapterManager;
 
-class AdminChaptersController { //Récupère tous les chapitres
+class AdminChaptersController {
 
-    public function AdminChaptersPage() {
+    public function AdminChaptersPage() { //Récupère tous les chapitres
         $chManager = new ChapterManager();
         $chapters = $chManager->getChapters();
         require ('src/View/admin/listChapters.php');
     }
+
 
 }

@@ -12,12 +12,15 @@ if(isset($_SESSION['flash'])) {
 
 <?php foreach ($result->getComments() as $co) : ?>
     <h2><?= $co->getAuthor(); ?></h2>
-    <h3><?= $co->getComment();  ?></h3>
+
+    <?php if ($co->getModerate() == 1) : ?>
+        <p>Ce commentaire est modéré par l'administrateur</p>
+        <?php else :?>
+        <p><?= $co->getComment();  ?></p>
+    <?php endif; ?>
     <p><?= $co->getCommentDate(); ?></p>
-    <?php if($co->getReported() == 0) : ?>
-    <a href="reportedComment&id_chapter=<?= $result->getId();?>&id=<?= $co->getId();?>"> Reporter</a>
-    <?php else : ?>
-    <p>Ce commentaire est signalé</p>
+    <?php if($co->getReported() == 0 && $co->getModerate() != 1) : ?>
+    <a href="reportedComment&id_chapter=<?= $result->getId();?>&id=<?= $co->getId();?>" onclick="return confirm('Etes-vous sûr de vouloir signaler ce commentaire ?')"> Signaler</a>
     <?php endif; ?>
 <?php endforeach; ?>
 

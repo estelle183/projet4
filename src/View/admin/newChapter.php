@@ -10,6 +10,7 @@ ob_start();
     <button type="submit">Valider</button>
 </form>
 
+
 <script src="vendor/tinymce/tinymce/tinymce.min.js"></script>
 <script>
     tinymce.init({
