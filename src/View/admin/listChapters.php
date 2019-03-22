@@ -11,6 +11,7 @@ ob_start();
     <th scope="col">Titre</th>
     <th scope="col">Contenu</th>
     <th scope="col">Modification</th>
+        <th scope="col">Suppression</th>
     </tr>
 
     <?php foreach ($chapters as $chapter) : ?>
@@ -19,7 +20,8 @@ ob_start();
         <td><?= $chapter->getCreationDate();  ?></td>
         <td><?= $chapter->getTitle(); ?></td>
         <td><?=substr ($chapter->getContent(), 0, 20); ?>...</td>
-        <td>ddd</td>
+        <td><a href="admin-modification-chapitre&id=<?= $chapter->getId(); ?>">Modifier</a</td>
+        <td><a href="admin-supression-chapitre&id=<? $chapter->getId(); ?>">Supprimer</a></td>
 
     </tr>
     <?php endforeach; ?>

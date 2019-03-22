@@ -28,6 +28,21 @@ class ChapterManager extends DbManager
         return $chapters;
     }
 
+    public function getChapter (Chapters $chapter) // Récupérer un seul chapitre
+    {
+        $req = $this->db->prepare ('SELECT id, title, content FROM chapters WHERE id = :id');
+        $req->execute (array(
+            'id' => $chapter->getId (),
+        ));
+        $result = $req->fetch (PDO::FETCH_ASSOC);
+
+        $chapter->setTitle ($result['title']);
+        $chapter->setContent ($result['content']);
+
+        return $chapter;
+    }
+
+
     public function getChapterWithComments (Chapters $chapters) // Récupérer un seul chapitre et ses commentaires associés
     {
         $req = $this->db->prepare('SELECT ch.id, ch.title, ch.content, DATE_FORMAT(ch.creation_date, \' %d/%m/%Y à %Hh %imin %ss\') AS creationDate, co.id AS co_id, co.author, co.comment, DATE_FORMAT(co.comment_date, \'%d/%m/%Y à %Hh%imin%ss\') AS commentDate, co.reported, co.moderate FROM chapters ch LEFT JOIN comments co ON co.chapter_id = ch.id WHERE ch.id = ?');
@@ -57,7 +72,7 @@ class ChapterManager extends DbManager
         return $chapters;
     }
 
-    public function addChapter (Chapters $chapter) {
+    public function addChapter (Chapters $chapter) { // Insérer un nouveau chapitre
         $req = $this->db->prepare('INSERT INTO chapters(title, content, creation_date) VALUES (:title, :content, NOW())');
         $affectedLines = $req->execute (array(
             'title' => $chapter->getTitle (),
@@ -67,4 +82,23 @@ class ChapterManager extends DbManager
         return $affectedLines;
     }
 
+    public function deleteChapter (Chapters $chapter) { //Supprimer un chapitre
+        $req = $this->db->prepare('DELETE FROM chapters WHERE id= :id');
+        $affectedLines = $req->execute (array(
+            'id' => $chapter->getId (),
+        ));
+
+        return $affectedLines;
+    }
+
+    public function updateChapter(Chapters $chapter) { //Modifier un chapitre
+        $req = $this->db->prepare ('UPDATE chapters SET title= :title, content= :content WHERE id = :id');
+        $affectedLines = $req->execute (array(
+            'id' => $chapter->getId (),
+            'title' => $chapter->getTitle(),
+            'content' => $chapter->getContent()
+        ));
+
+        return $affectedLines;
+    }
 }

@@ -53,9 +53,29 @@ class CommentsManager extends DbManager
 
     }
 
-    public function cancelReportedComment(Comments $comment)
+    public function cancelReportedComment(Comments $comment) // Annuler le signalement d'un commentaire
     {
         $req = $this->db->prepare ('UPDATE comments SET reported = 0 WHERE id = :id');
+        $affectedLines = $req->execute (array(
+            'id' => $comment->getId (),
+        ));
+
+        return $affectedLines;
+    }
+
+    public function moderateComment(Comments $comment) // Modérer un commentaire
+    {
+        $req = $this->db->prepare ('UPDATE comments SET moderate = 1 WHERE id = :id');
+        $affectedLines = $req->execute (array(
+            'id' => $comment->getId (),
+        ));
+
+        return $affectedLines;
+    }
+
+    public function cancelModerateComment(Comments $comment) // Annuler la modération d'un commentaire
+    {
+        $req = $this->db->prepare ('UPDATE comments SET moderate = 0 WHERE id = :id');
         $affectedLines = $req->execute (array(
             'id' => $comment->getId (),
         ));

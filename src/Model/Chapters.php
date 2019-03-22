@@ -10,6 +10,7 @@ class Chapters
     private $title;
     private $content;
     private $creation_date;
+    private $update_date;
     private $comments = [];
 
     public function __construct($values = null)
@@ -62,6 +63,11 @@ class Chapters
         return $this->creation_date;
     }
 
+    public function getUpdateDate()
+    {
+        return $this->update_date;
+    }
+
     /**
      * @return array
      */
@@ -99,6 +105,11 @@ class Chapters
         if (is_string($creation_date)) {
             $this->creation_date = $creation_date;
         }
+    }
+
+    public function setUpdateDate($update_date): void
+    {
+        $this->update_date = $update_date;
     }
 
     /**

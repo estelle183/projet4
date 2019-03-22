@@ -13,5 +13,7 @@ class AdminCommentsController {
         require ('src/View/admin/reportedComments.php');
     }
 
+
+
 }
 

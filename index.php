@@ -12,6 +12,8 @@ use App\Controller\AdminController\AdminChaptersController;
 use App\Controller\AdminController\AdminCommentsController;
 use App\Controller\AdminController\AdminNewChapterController;
 use App\Controller\AdminController\AdminReportedController;
+use App\Controller\AdminController\AdminAddChapterController;
+use App\Controller\AdminController\AdminUpdateChapterController;
 
 $url = '';
 if (isset($_GET['url'])) {
@@ -56,13 +58,14 @@ elseif ($url === 'admin-modération') {
     $comments->adminReportedComments();
 }
 
+
 elseif ($url === 'admin-liste-chapitres') {
     $chapters = new AdminChaptersController();
     $chapters->adminChaptersPage();
         }
 
 elseif ($url === 'addChapter') {
-    $newChapter = new AdminNewChapterController();
+    $newChapter = new AdminAddChapterController();
     $newChapter->addChapter ($_POST['title'], $_POST['content']);
 }
 
@@ -72,7 +75,31 @@ elseif ($url === 'adminCancelReport') {
     $adminReportedController->cancelReportedComment ($comment);
 }
 
+elseif ($url === 'adminModerate') {
+    $comment = new Comments(['id'=>$_GET['id']]);
+    $adminModerate = new AdminReportedController();
+    $adminModerate->moderateComment ($comment);
+}
+
+elseif ($url === 'adminCancelModerate') {
+    $comment = new Comments(['id'=>$_GET['id']]);
+    $adminModerateController = new AdminReportedController();
+    $adminModerateController->cancelModerateComment ($comment);
+}
+
 elseif ($url === "admin-nouveau-chapitre") {
-$newChapter = new AdminNewChapterController();
-$newChapter->newChapter();
+    $newChapter = new AdminNewChapterController();
+    $newChapter->newChapter();
+}
+
+elseif ($url === "admin-modification-chapitre") {
+    $chapter = new Chapters(['id'=>$_GET['id']]);
+    $getOneChapter = new AdminUpdateChapterController();
+    $getOneChapter->getChapter($chapter);
+}
+
+elseif ($url === 'updateChapter') {
+    $chapter = new Chapters(['id'=>$_GET['id']]);
+    $updateChapter = new AdminUpdateChapterController();
+    $updateChapter->updateChapter($_GET['id'], $_POST['title'], $_POST['content']);
 }
