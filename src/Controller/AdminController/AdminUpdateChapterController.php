@@ -15,10 +15,11 @@ class AdminUpdateChapterController
         require ('src/View/admin/updateChapter.php');
     }
 
-    public function updateChapter($id, $title, $content) {
+    public function updateChapter($id, $title, $subtitle, $content) {
         $chapter = new Chapters();
         $chapter->setId ($id);
         $chapter->setTitle($title);
+        $chapter->setSubtitle ($subtitle);
         $chapter->setContent ($content);
         $chManager = new ChapterManager();
         $chManager->updateChapter($chapter);

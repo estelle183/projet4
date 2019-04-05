@@ -8,6 +8,7 @@ class Chapters
 {
     private $id;
     private $title;
+    private $subtitle;
     private $content;
     private $creation_date;
     private $update_date;
@@ -51,6 +52,11 @@ class Chapters
         return $this->title;
     }
 
+    public function getSubtitle(): ?string
+    {
+        return $this->subtitle;
+    }
+
 
     public function getContent(): ?string
     {
@@ -89,6 +95,11 @@ class Chapters
     {
 
             $this->title = $title;
+    }
+
+    public function setSubtitle($subtitle): void
+    {
+        $this->subtitle = $subtitle;
     }
 
 

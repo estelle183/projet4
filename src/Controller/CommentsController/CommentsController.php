@@ -20,7 +20,7 @@ class CommentsController
         $coManager->addChapterComment ($comment);
         $_SESSION['flash'] = "Votre commentaire a bien été ajouté";
         $flash = $_SESSION['flash'];
-        header ('Location: chapitre&id=' . $chapterId);
+        header ('Location: chapitre&id=' . $chapterId . "#ancre");
     }
 
 
