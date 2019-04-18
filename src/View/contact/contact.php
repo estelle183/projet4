@@ -1,10 +1,12 @@
+<?php $title = "Contact"; ?>
+<?php $pageTitle = "Formulaire de contact"; ?>
+<?php $pageSubtitle = "Une question ? N'hésitez pas à me contacter !"; ?>
 <?php
 ob_start ();
 
 ?>
 
 <div class="container">
-    <h1 class="mt-4">Formulaire de contact</h1>
     <div class="form-group">
 
 <form action="contact-form" method="post" >

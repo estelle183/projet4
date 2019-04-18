@@ -1,6 +1,7 @@
 <?php
 ob_start();
 ?>
+<div class="container">
 
     <h1><?= $result->getTitle(); ?></h1>
     <h2><?= $result->getSubtitle(); ?></h2>
@@ -12,6 +13,7 @@ ob_start();
 
     <a href="deleteChapter&id=<?= $result->getId();?>" onclick="return confirm('Etes-vous sûr de vouloir supprimer ce chapitre ?')"> Supprimer</a>
 
+</div>
 
 <?php
 $content=ob_get_clean ();

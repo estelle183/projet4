@@ -1,8 +1,14 @@
+<?php $title = "Liste des chapitres"; ?>
+<?php $pageTitle = "Liste des Chapitres"; ?>
 <?php
 ob_start();
 ?>
 
 <div class="container">
+    <div class="row">
+<h2 class="section-heading">Liste des chapitres</h2>
+    </div>
+
     <div class="row">
         <div class="col-lg-8 col-md-10 mx-auto">
             <?php foreach ($chapters as $chapter) : ?>

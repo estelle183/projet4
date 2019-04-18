@@ -5,7 +5,6 @@ ob_start();
 <div class="container">
 <h1>Gestion des chapitres</h1><br/>
 
-<a href=admin-nouveau-chapitre>Nouveau chapitre</a><br/>
 
 <div class="responsive-table-line" style="margin:10px 2%;">
     <table class="table table-bordered table-condensed table-body-center" >
@@ -34,6 +33,9 @@ ob_start();
     <?php endforeach; ?>
 
 </table>
+
+        <a class="btn btn-primary float-right" href=admin-nouveau-chapitre>Nouveau chapitre</a><br/>
+
 </div>
 </div>
 

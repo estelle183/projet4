@@ -1,7 +1,7 @@
 <?php
 ob_start ();
 ?>
-
+<div class="container">
     <table class="table">
     <tr>
         <th scope="col">Date de création</th>
@@ -24,6 +24,8 @@ ob_start ();
 
     <?php endif; ?>
 <?php endforeach; ?>
+    </table>
+</div>
 
 <?php
 $content = ob_get_clean ();

@@ -10,6 +10,7 @@ class AdminCommentsController {
     public function adminReportedComments() {
         $coManager = new CommentsManager();
         $comments = $coManager->getComments();
+
         require ('src/View/admin/reportedComments.php');
     }
 

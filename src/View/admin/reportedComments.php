@@ -28,6 +28,7 @@ ob_start ();
 
     <?php endif; ?>
 <?php endforeach; ?>
+    </table>
 </div>
 
 <?php

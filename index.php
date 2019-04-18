@@ -17,6 +17,10 @@ use App\Controller\AdminController\AdminUpdateChapterController;
 use App\Controller\AdminController\AdminDeleteChapterController;
 use App\Controller\AdminController\AdminLoginController;
 use App\Controller\ContactController\ContactController;
+use App\Controller\AdminController\AdminHomeController;
+use App\Controller\AdminController\AdminContactsController;
+use App\Model\Contact;
+use App\Controller\ErrorController\ErrorController;
 
 $url = '';
 if (isset($_GET['url'])) {
@@ -36,9 +40,14 @@ elseif ($url === 'chapitres') {
     }
 
 elseif ($url === 'chapitre') {
-    $chapter = new Chapters(['id'=>$_GET['id']]);
-    $chapterController = new ChapterController();
-    $chapterController->chapterWithComments($chapter);
+    if (isset($_GET['id']) && !empty($_GET['id']) && preg_match ("/\d+/", $_GET['id'])) {
+        $chapter = new Chapters(['id' => $_GET['id']]);
+        $chapterController = new ChapterController();
+        $chapterController->chapterWithComments ($chapter);
+    } else {
+        $error = new ErrorController();
+        $error->Error404 ();
+    }
 }
 
 elseif ($url === 'addComment') {
@@ -56,6 +65,26 @@ elseif ($url === 'reportedComment') {
     $commentController->reportedComment ($comment, $_GET['id_chapter']);
 
 }
+
+elseif ($url === 'contact') {
+    $contact = new ContactController();
+    $contact->contactForm ();
+}
+
+elseif ($url === 'contact-form') {
+    if(isset($_POST['name']) && isset($_POST['email']) && isset($_POST['subject']) && isset($_POST['message']) && isset($_POST['consent']))
+    {
+        if(!empty($_POST['name']) && !empty($_POST['email']) && !empty($_POST['subject']) && !empty($_POST['message']) && !empty($_POST['consent']) && $_POST['consent'] == 1)
+        {
+            if(preg_match ('#^[a-z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$#', $_POST['email']))
+            {
+            $contact = new ContactController();
+            $contact->sendContactForm ($_POST['name'], $_POST['email'], $_POST['subject'], $_POST['message'], $_POST['consent']);
+        }
+            echo 'L\'adresse ' . $_POST['email'] . ' n\'est pas valide, recommencez !';
+    }
+}
+    }
 
 elseif ($url === 'admin-signalement') {
     if (isset($_SESSION['pseudo'])) {
@@ -167,23 +196,50 @@ elseif ($url === 'admin-connexion-check') {
     }
 }
 
+elseif ($url === 'admin-accueil') {
+    if(isset($_SESSION['pseudo'])) {
+$nbChapters = new AdminHomeController();
+$nbChapters->adminChapterCount ();
+    } else {
+        header ('Location: admin-connexion');
+    }
+}
+
 elseif ($url === 'admin-deconnexion') {
     session_destroy ();
     header('Location: chapitres');
 }
 
-elseif ($url === 'contact') {
-    $contact = new ContactController();
-    $contact->contactForm ();
-}
 
-elseif ($url === 'contact-form') {
-if(isset($_POST['name']) && isset($_POST['email']) && isset($_POST['subject']) && isset($_POST['message']) && isset($_POST['consent']))
-{
-    if(!empty($_POST['name']) && !empty($_POST['email']) && !empty($_POST['subject']) && !empty($_POST['message']) && !empty($_POST['consent']) && $_POST['consent'] == 1)
-    {
-        $contact = new ContactController();
-        $contact->sendContactForm ($_POST['name'], $_POST['email'], $_POST['subject'], $_POST['message'], $_POST['consent']);
+elseif ($url === 'admin-gestion-contacts') {
+    if(isset($_SESSION['pseudo'])) {
+        $contacts = new AdminContactsController();
+        $contacts->adminContactsPage ();
+    } else {
+        header ('Location: admin-connexion');
     }
 }
+
+elseif ($url === 'adminProcessedMail')
+{
+    $contact = new Contact(['id'=>$_GET['id']]);
+    $adminProcessed = new AdminContactsController();
+    $adminProcessed->adminProcessedMail($contact);
+}
+
+elseif ($url === 'admin-mail') {
+    if (isset($_SESSION['pseudo'])) {
+        if (isset($_GET['id']) && !empty($_GET['id']) && preg_match ("/\d+/", $_GET['id'])) {
+            $contact = new Contact(['id'=> $_GET['id']]);
+             $contactController = new AdminContactsController();
+             $contactController->getMail ($contact);
+        }
+    } else {
+        header ('Location: admin-connexion');
+    }
+}
+
+else {
+$error = new ErrorController();
+$error->Error404 ();
 }

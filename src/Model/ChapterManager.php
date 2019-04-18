@@ -63,33 +63,37 @@ class ChapterManager extends DbManager
 
     public function getChapterWithComments (Chapters $chapters) // Récupérer un seul chapitre et ses commentaires associés
     {
-        $req = $this->db->prepare('SELECT ch.id, ch.title, ch.subtitle, ch.content, DATE_FORMAT(ch.creation_date, \' %d/%m/%Y à %Hh %imin %ss\') AS creationDate, DATE_FORMAT(ch.update_date, \' %d/%m/%Y à %Hh %imin %ss\') AS updateDate, co.id AS co_id, co.author, co.comment, DATE_FORMAT(co.comment_date, \'%d/%m/%Y à %Hh%imin%ss\') AS commentDate, co.reported, co.moderate FROM chapters ch LEFT JOIN comments co ON co.chapter_id = ch.id WHERE ch.id = ?');
-        $req->execute(array($chapters->getId ()));
-        $result = $req->fetchAll(PDO::FETCH_ASSOC);
-        $comments = [];
+        $req = $this->db->prepare ('SELECT ch.id, ch.title, ch.subtitle, ch.content, DATE_FORMAT(ch.creation_date, \' %d/%m/%Y à %Hh %imin %ss\') AS creationDate, DATE_FORMAT(ch.update_date, \' %d/%m/%Y à %Hh %imin %ss\') AS updateDate, co.id AS co_id, co.author, co.comment, DATE_FORMAT(co.comment_date, \'%d/%m/%Y à %Hh%imin%ss\') AS commentDate, co.reported, co.moderate FROM chapters ch LEFT JOIN comments co ON co.chapter_id = ch.id WHERE ch.id = ?');
+        $req->execute (array($chapters->getId ()));
+        $result = $req->fetchAll (PDO::FETCH_ASSOC);
+        if ($result) {
+            $comments = [];
 
-        foreach ($result as $data) {
-            $chapters->setTitle ($data['title']);
-            $chapters->setSubtitle($data['subtitle']);
-            $chapters->setContent ($data['content']);
-            $chapters->setCreationDate ($data['creationDate']);
-            $chapters->setUpdateDate ($data['updateDate']);
+            foreach ($result as $data) {
+                $chapters->setTitle ($data['title']);
+                $chapters->setSubtitle ($data['subtitle']);
+                $chapters->setContent ($data['content']);
+                $chapters->setCreationDate ($data['creationDate']);
+                $chapters->setUpdateDate ($data['updateDate']);
 
-            if ($data['co_id']) {
-                $comment = new Comments();
-                $comment->setId ($data['co_id']);
-                $comment->setAuthor ($data['author']);
-                $comment->setComment ($data['comment']);
-                $comment->setCommentDate ($data['commentDate']);
-                $comment->setReported ($data['reported']);
-                $comment->setModerate ($data['moderate']);
-                $comments[] = $comment;
+                if ($data['co_id']) {
+                    $comment = new Comments();
+                    $comment->setId ($data['co_id']);
+                    $comment->setAuthor ($data['author']);
+                    $comment->setComment ($data['comment']);
+                    $comment->setCommentDate ($data['commentDate']);
+                    $comment->setReported ($data['reported']);
+                    $comment->setModerate ($data['moderate']);
+                    $comments[] = $comment;
+                }
             }
+
+            $chapters->setComments ($comments);
+
+            return $chapters;
+        } else {
+            return false;
         }
-
-        $chapters->setComments ($comments);
-
-        return $chapters;
     }
 
     public function addChapter (Chapters $chapter) { // Insérer un nouveau chapitre
@@ -122,5 +126,13 @@ class ChapterManager extends DbManager
         ));
 
         return $affectedLines;
+    }
+
+    public function chapterCount() { //Récupérer le nombre de chapitres
+        $req = $this->db->query('SELECT COUNT(*) AS nbChapters FROM chapters');
+        $result = $req->fetchColumn ();
+
+        return $result;
+
     }
 }
