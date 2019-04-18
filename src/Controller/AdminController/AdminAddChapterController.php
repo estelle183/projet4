@@ -8,10 +8,11 @@ use App\Model\Chapters;
 
 class AdminAddChapterController
 {
-    public function addChapter($title, $content)
+    public function addChapter($title, $subtitle, $content)
     {
         $chapter = new Chapters();
         $chapter->setTitle ($title);
+        $chapter->setSubtitle ($subtitle);
         $chapter->setContent ($content);
         $chManager = new ChapterManager();
         $chManager->addChapter ($chapter);

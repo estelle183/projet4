@@ -1,14 +1,18 @@
 <?php
 ob_start();
 ?>
-<h1>Page Admin</h1>
 
-<a href=admin-nouveau-chapitre>Nouveau chapitre</a>
+<div class="container">
+<h1>Gestion des chapitres</h1><br/>
 
-<table class="table">
+
+<div class="responsive-table-line" style="margin:10px 2%;">
+    <table class="table table-bordered table-condensed table-body-center" >
     <tr>
     <th scope="col">Date de création</th>
+        <th scope="col">Date de modification</th>
     <th scope="col">Titre</th>
+        <th scope="col">Sous-titre</th>
     <th scope="col">Contenu</th>
     <th scope="col">Modification</th>
         <th scope="col">Suppression</th>
@@ -18,16 +22,22 @@ ob_start();
     <tr>
 
         <td><?= $chapter->getCreationDate();  ?></td>
+        <td><?= $chapter->getUpdateDate(); ?></td>
         <td><?= $chapter->getTitle(); ?></td>
+        <td><?= $chapter->getSubtitle(); ?></td>
         <td><?=substr ($chapter->getContent(), 0, 20); ?>...</td>
         <td><a href="admin-modification-chapitre&id=<?= $chapter->getId(); ?>">Modifier</a</td>
-        <td><a href="admin-supression-chapitre&id=<? $chapter->getId(); ?>">Supprimer</a></td>
+        <td><a href="admin-suppression-chapitre&id=<?= $chapter->getId(); ?>">Supprimer</a></td>
 
     </tr>
     <?php endforeach; ?>
 
 </table>
 
+        <a class="btn btn-primary float-right" href=admin-nouveau-chapitre>Nouveau chapitre</a><br/>
+
+</div>
+</div>
 
 
 

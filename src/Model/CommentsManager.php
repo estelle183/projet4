@@ -26,7 +26,6 @@ class CommentsManager extends DbManager
             $comments[] = $comment;
         }
 
-
         return $comments;
     }
 
@@ -82,5 +81,29 @@ class CommentsManager extends DbManager
 
         return $affectedLines;
     }
+
+    public function commentsCount() {
+        $req = $this->db->query('SELECT COUNT(*) AS nbComments FROM comments');
+        $result = $req->fetchColumn ();
+
+        return $result;
+
+    }
+
+    public function commentsReportedCount() {
+        $req = $this->db->query('SELECT COUNT(*) AS nbReport FROM comments WHERE reported = 1 && moderate = 0');
+        $result = $req->fetchColumn ();
+
+        return $result;
+    }
+
+    public function commentsModerateCount() {
+        $req = $this->db->query('SELECT COUNT(*) AS nbReport FROM comments WHERE moderate = 1');
+        $result = $req->fetchColumn ();
+
+        return $result;
+    }
+
+
 }
 
