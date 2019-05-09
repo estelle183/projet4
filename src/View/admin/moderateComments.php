@@ -2,12 +2,17 @@
 ob_start ();
 ?>
 <div class="container">
-    <table class="table">
+    <div class="row section-heading shadow p-3 mb-5 bg-white rounded">
+        <img src="public/images/heading.jpg" class="heading-logo" width="100px">
+        <h2 class="heading-title">Commentaires modérés</h2>
+    </div>
+    <div class="admin-table responsive-table-line table table-striped" style="margin:10px 2%;">
+        <table class="table table-bordered table-condensed table-body-center" >
     <tr>
         <th scope="col">Date de création</th>
         <th scope="col">Auteur</th>
         <th scope="col">Contenu</th>
-        <th scope="col">Modification</th>
+        <th scope="col">Annuler la modération</th>
     </tr>
 
 <?php foreach ($comments as $co) : ?>
@@ -18,13 +23,14 @@ ob_start ();
             <td><?= $co->getCommentDate (); ?></td>
             <td><?= $co->getAuthor (); ?></td>
             <td><?= $co->getComment (); ?></td>
-            <td><a href="adminCancelModerate&id=<?= $co->getId(); ?>">Annuler la modération</a>
+            <td align="center"><a <a class="btn btn-admin  btn-danger btn-xs" href="adminCancelModerate&id=<?= $co->getId(); ?>"><i class="far fa-stop-circle"></i></a>
 
         </tr>
 
     <?php endif; ?>
 <?php endforeach; ?>
     </table>
+    </div>
 </div>
 
 <?php

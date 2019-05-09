@@ -1,12 +1,14 @@
 <?php $title = "Contact"; ?>
-<?php $pageTitle = "Formulaire de contact"; ?>
-<?php $pageSubtitle = "Une question ? N'hésitez pas à me contacter !"; ?>
 <?php
 ob_start ();
 
 ?>
 
 <div class="container">
+    <div class="row section-heading shadow p-3 mb-5 bg-white rounded">
+        <img src="public/images/heading.jpg" class="heading-logo" width="100px">
+        <h2 class="heading-title">Formulaire de contact</h2>
+    </div>
     <div class="form-group">
 
 <form action="contact-form" method="post" >
@@ -29,7 +31,7 @@ ob_start ();
     <div class="form-group form-check">
         <label class="form-check-label" for="consent">
             <input type="hidden" name="consent" value="0">
-            <input type="checkbox" value="1" name="consent" id="consent" class="form-check-input" required/> Consentement
+            <input type="checkbox" value="1" name="consent" id="consent" class="form-check-input" required/>J'accepte que les données saisies dans ce formulaire soient utilisées pour me contacter dans le cadre de ma demande, conformément à <a href="#">nos mentions légales</a>
         </label>
     </div>
     <button type="submit" class="btn btn-primary">Envoyer</button>

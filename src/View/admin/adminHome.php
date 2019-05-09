@@ -3,13 +3,10 @@ ob_start();
 ?>
 
 <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="page-title">
-                    <h2>Dashboard</h2>
-                </div>
-            </div>
-        </div>
+    <div class="row section-heading shadow p-3 mb-5 bg-white rounded">
+        <img src="public/images/heading.jpg" class="heading-logo" width="100px">
+        <h2 class="heading-title">Accueil Administrateur</h2>
+    </div>
 
         <div class="row" >
             <div class="col-lg-3 col-sm-6">

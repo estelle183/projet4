@@ -7,7 +7,17 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto">
+                <?php if(isset($_SESSION['pseudo'])) : ?>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown">Site<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a class="nav-link" href="/">Accueil du site</a></li>
+                            <li><a class="nav-link" href="chapitres">Chapitres</a></li>
+                            <li><a class="nav-link" href="contact">Contact</a></li>
+                        </ul>
+                    </li>
 
+                <?php else : ?>
                 <li class="nav-item">
                     <a class="nav-link" href="/">Accueil</a>
                 </li>
@@ -17,6 +27,10 @@
                 <li class="nav-item">
                     <a class="nav-link" href="contact">Contact</a>
                 </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="auteur">L'auteur</a>
+                    </li>
+                <?php endif; ?>
 
                 <?php if(isset($_SESSION['pseudo'])) : ?>
 
@@ -24,19 +38,19 @@
                     <a class="nav-link" href="admin-accueil">Accueil Administrateur</a>
                 </li>
                     <li class="dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Gestion des chapitres<span class="caret"></span></a>
+                        <a class="dropdown-toggle" data-toggle="dropdown">Gestion des chapitres<b class="caret"></b></a>
                         <ul class="dropdown-menu">
-                            <li><a href="admin-liste-chapitres" title="Lien 2.1">Liste des chapitres</a></li>
-                            <li><a href="admin-nouveau-chapitre" title="Lien 2.2">Nouveau chapitre</a></li>
+                            <li><a class="nav-link" href="admin-liste-chapitres">Liste des chapitres</a></li>
+                            <li><a class="nav-link" href="admin-nouveau-chapitre">Nouveau chapitre</a></li>
                         </ul>
                     </li>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="admin-signalement">Commentaires signalés</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="admin-moderation">Commentaires modérés</a>
-                </li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown">Commentaires<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a class="nav-link" href="admin-signalement">Commentaires signalés</a></li>
+                            <li><a class="nav-link" href="admin-moderation">Commentaires modérés</a></li>
+                        </ul>
+                    </li>
                 <li class="nav-item">
                     <a class="nav-link" href="admin-gestion-contacts">Gestion des contacts</a>
                 </li>

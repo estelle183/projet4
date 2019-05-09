@@ -21,6 +21,9 @@ use App\Controller\AdminController\AdminHomeController;
 use App\Controller\AdminController\AdminContactsController;
 use App\Model\Contact;
 use App\Controller\ErrorController\ErrorController;
+use App\Controller\AdminController\AdminNewPasswordController;
+use App\Controller\AuthorController\AuthorController;
+use App\Model\Admin;
 
 $url = '';
 if (isset($_GET['url'])) {
@@ -50,12 +53,21 @@ elseif ($url === 'chapitre') {
     }
 }
 
+elseif ($url === 'auteur') {
+    $author = new AuthorController();
+    $author->Author ();
+}
+
 elseif ($url === 'addComment') {
 if(isset($_POST['pseudo']) && isset($_POST['message']) && isset($_GET['id'])) {
     if(!empty($_POST['pseudo']) && !empty($_POST['message']) && !empty($_GET['id'])) {
         $commentController = new CommentsController();
-        $commentController->addComment ($_GET['id'], $_POST['pseudo'], $_POST['message']);
+        $commentController->addComment ($_GET['id'], htmlspecialchars($_POST['pseudo']), htmlspecialchars($_POST['message']));
     }
+}
+else {
+    $error = new ErrorController();
+    $error->Error404 ();
 }
 }
 
@@ -79,11 +91,14 @@ elseif ($url === 'contact-form') {
             if(preg_match ('#^[a-z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$#', $_POST['email']))
             {
             $contact = new ContactController();
-            $contact->sendContactForm ($_POST['name'], $_POST['email'], $_POST['subject'], $_POST['message'], $_POST['consent']);
+            $contact->sendContactForm (htmlspecialchars($_POST['name']), htmlspecialchars($_POST['email']), htmlspecialchars($_POST['subject']), htmlspecialchars($_POST['message']), htmlspecialchars($_POST['consent']));
         }
             echo 'L\'adresse ' . $_POST['email'] . ' n\'est pas valide, recommencez !';
     }
-}
+} else {
+        $error = new ErrorController();
+        $error->Error404 ();
+    }
     }
 
 elseif ($url === 'admin-signalement') {
@@ -120,6 +135,10 @@ elseif ($url === 'addChapter') {
         if (!empty($_POST['title']) && !empty($_POST['subtitle']) && !empty($_POST['content'])) {
             $newChapter = new AdminAddChapterController();
             $newChapter->addChapter ($_POST['title'], $_POST['subtitle'], $_POST['content']);
+        }
+        else {
+            $error = new ErrorController();
+            $error->Error404 ();
         }
 }
 
@@ -187,14 +206,69 @@ elseif ($url === 'admin-connexion') {
     $login->adminLoginPage ();
 }
 
+
 elseif ($url === 'admin-connexion-check') {
     if (isset($_POST['pseudo']) && isset($_POST['password'])) {
         if (!empty($_POST['pseudo']) && !empty($_POST['password'])) {
             $login = new AdminLoginController();
-            $login->checkLogin ($_POST['pseudo'], $_POST['password']);
+            $login->checkLogin (htmlspecialchars($_POST['pseudo']), htmlspecialchars($_POST['password']));
         }
     }
+    else {
+        $error = new ErrorController();
+        $error->Error404 ();
+    }
 }
+
+elseif ($url === 'admin-oubli-motdepasse') {
+    $password = new AdminNewPasswordController();
+    $password->adminForgotPasswordPage ();
+
+}
+
+elseif ($url === 'admin-email-check') {
+    if (isset($_POST['email'])) {
+        if (!empty($_POST['email'])) {
+            $password = new AdminNewPasswordController();
+            $password->checkEmail (htmlspecialchars($_POST['email']));
+        }
+    }
+    else {
+        $error = new ErrorController();
+        $error->Error404 ();
+    }
+}
+
+elseif ($url === 'admin-nouveau-motdepasse') {
+    if (isset($_GET['token']) && !empty($_GET['token'])) {
+                    $password = new AdminNewPasswordController();
+                    $password->resetPasswordForm ($_GET['token']);
+                } else {
+        $error = new ErrorController();
+        $error->Error404 ();
+    }
+}
+
+elseif ($url === 'admin-new-password') {
+    if (isset($_GET['token']) && !empty($_GET['token'])) {
+        if (isset($_POST['password']) && isset($_POST['password2'])) {
+            if (!empty($_POST['password']) && !empty($_POST['password2'])) {
+                if ($_POST['password'] === $_POST['password2']) {
+                    $password = new AdminNewPasswordController();
+                    $password->changePassword ($_GET['token'], password_hash ($_POST['password'], PASSWORD_BCRYPT));
+                } else {
+                    echo 'Les mots de passe ne sont pas identiques, recommencez !';
+                }
+            }
+        }
+    }
+else {
+    $error = new ErrorController();
+    $error->Error404 ();
+}
+}
+
+
 
 elseif ($url === 'admin-accueil') {
     if(isset($_SESSION['pseudo'])) {
@@ -215,6 +289,15 @@ elseif ($url === 'admin-gestion-contacts') {
     if(isset($_SESSION['pseudo'])) {
         $contacts = new AdminContactsController();
         $contacts->adminContactsPage ();
+    } else {
+        header ('Location: admin-connexion');
+    }
+}
+
+elseif ($url === 'admin-vue-contacts') {
+    if(isset($_SESSION['pseudo'])) {
+        $contacts = new AdminContactsController();
+        $contacts->adminAllContactsPage ();
     } else {
         header ('Location: admin-connexion');
     }
