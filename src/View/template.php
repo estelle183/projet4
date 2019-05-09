@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="fr">
-<html>
 <head>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -21,18 +20,11 @@
     <?php require 'nav.php' ?>
 </nav>
 
-<header class="masthead">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-10 col-md-12 mx-auto">
-                <div class="page-heading">
-                    <h1><?php if(isset($pageTitle)) : ?><?= $pageTitle ?></h1><?php endif; ?>
-                    <span class="subheading"><?php if(isset($pageSubtitle)) : ?><?= $pageSubtitle ?></span><?php endif; ?>
-                </div>
-            </div>
-        </div>
+<div class="container">
+    <div class="row">
+
     </div>
-</header>
+</div>
 
 <section>
     <?= $content ?>
@@ -77,7 +69,7 @@
 <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
 <!-- Custom scripts for this template -->
-<script src="js/clean-blog.min.js"></script>
+<script src="public/js/clean-blog.js"></script>
 
 </body>
 </html>

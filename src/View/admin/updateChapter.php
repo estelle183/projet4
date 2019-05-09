@@ -2,6 +2,10 @@
 ob_start();
 ?>
     <div class="container">
+        <div class="row section-heading shadow p-3 mb-5 bg-white rounded">
+            <img src="public/images/heading.jpg" class="heading-logo" width="100px">
+            <h2 class="heading-title">Modifier le chapitre</h2>
+        </div>
     <div class="form-group">
     <form action="updateChapter&id=<?= $result->getId()?>" method="post">
         <label for="title" class="font-weight-bold">Votre titre</label>

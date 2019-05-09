@@ -3,11 +3,15 @@ ob_start();
 ?>
 
     <div class="container h-100">
-        <div class="d-flex justify-content-center h-100">
+        <div class="row section-heading shadow p-3 mb-5 bg-white rounded">
+            <img src="public/images/heading.jpg" class="heading-logo" width="100px">
+            <h2 class="heading-title">Connexion</h2>
+        </div>
+        <div class="d-flex justify-content-center h-100" style="padding: 10%">
             <div class="user_card">
                 <div class="d-flex justify-content-center">
                     <div class="brand_logo_container">
-                        <img src="../../../public/images/IMG_4084.jpg" class="brand_logo" alt="Logo" width="100px">
+                        <img src="public/images/IMG_4084.jpg" class="brand_logo" alt="Logo" width="100px">
                     </div>
                 </div>
                 <div class="d-flex justify-content-center form_container">
@@ -32,7 +36,7 @@ ob_start();
                 </div>
                 <div class="mt-4">
                     <div class="d-flex justify-content-center links">
-                        Mot de passe oublié ? <a href="#">Cliquez ici</a>
+                        Mot de passe oublié ? <br/><a href="admin-oubli-motdepasse"> Cliquez ici</a>
                     </div>
                 </div>
                 </form>

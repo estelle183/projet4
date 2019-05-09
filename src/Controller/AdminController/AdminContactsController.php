@@ -29,4 +29,11 @@ class AdminContactsController
 
 
     }
+
+    public function adminAllContactsPage() {
+        $coManager = new ContactManager();
+        $contacts = $coManager->getContacts ();
+        require('src/View/admin/allContacts.php');
+
+    }
 }

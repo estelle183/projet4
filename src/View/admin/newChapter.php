@@ -3,6 +3,10 @@ ob_start();
 ?>
 
 <div class="container">
+    <div class="row section-heading shadow p-3 mb-5 bg-white rounded">
+        <img src="public/images/heading.jpg" class="heading-logo" width="100px">
+        <h2 class="heading-title">Nouveau chapitre</h2>
+    </div>
 <div class="form-group">
 <form action="addChapter" method="post">
 

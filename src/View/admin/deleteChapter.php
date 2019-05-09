@@ -2,17 +2,22 @@
 ob_start();
 ?>
 <div class="container">
-
-    <h1><?= $result->getTitle(); ?></h1>
-    <h2><?= $result->getSubtitle(); ?></h2>
-    <p>Ajouté le <?= $result->getCreationDate(); ?></p>
+    <div class="row section-heading shadow p-3 mb-5 bg-white rounded">
+        <img src="public/images/heading.jpg" class="heading-logo" width="100px">
+        <h2 class="heading-title">Supprimer un chapitre</h2>
+    </div>
+<div class="post-preview">
+    <h1 class="post-title"><?= $result->getTitle(); ?></h1>
+    <h2 class="post-subtitle"><?= $result->getSubtitle(); ?></h2>
+    <p class="post-meta">Ajouté le <?= $result->getCreationDate(); ?></p>
 <?php if ($result->getUpdateDate () != NULL) : ?>
-    <p>Modifié le <?= $result->getUpdateDate (); ?></p>
+    <p class="post-meta">Modifié le <?= $result->getUpdateDate (); ?></p>
 <?php endif; ?>
-    <p><?= $result->getContent(); ?></p>
+    <p class="lead"><?= $result->getContent(); ?></p>
 
-    <a href="deleteChapter&id=<?= $result->getId();?>" onclick="return confirm('Etes-vous sûr de vouloir supprimer ce chapitre ?')"> Supprimer</a>
+    <a class="btn btn-danger" href="deleteChapter&id=<?= $result->getId();?>" onclick="return confirm('Etes-vous sûr de vouloir supprimer ce chapitre ?')"> Supprimer</a>
 
+</div>
 </div>
 
 <?php

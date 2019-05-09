@@ -7,8 +7,11 @@ namespace App\Model;
 class Admin
 {
     private $id;
+    private $email;
     private $login;
     private $password;
+    private $token;
+    private $token_date;
 
     public function __construct($values = null)
     {
@@ -49,6 +52,15 @@ class Admin
         $this->id = $id;
     }
 
+    public function getEmail()
+    {
+        return $this->email;
+    }
+
+    public function setEmail($email): void
+    {
+        $this->email = $email;
+    }
 
     public function getLogin()
     {
@@ -71,6 +83,29 @@ class Admin
     public function setPassword($password): void
     {
         $this->password = $password;
+    }
+
+    public function getToken()
+    {
+        return $this->token;
+    }
+
+
+    public function setToken($token): void
+    {
+        $this->token = $token;
+    }
+
+
+    public function getTokenDate()
+    {
+        return $this->token_date;
+    }
+
+
+    public function setTokenDate($token_date): void
+    {
+        $this->token_date = $token_date;
     }
 
 
