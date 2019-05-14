@@ -8,6 +8,12 @@ use App\Model\Chapters;
 
 class AdminAddChapterController
 {
+    /**
+     * Add a new chapter and redirect to chapters list
+     * @param $title
+     * @param $subtitle
+     * @param $content
+     */
     public function addChapter($title, $subtitle, $content)
     {
         $chapter = new Chapters();

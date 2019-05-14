@@ -43,23 +43,34 @@ class Comments
     }
 
 
+    /**
+     * @return int
+     */
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function setId(int $id): void
+    /**
+     * @param mixed $id
+     */
+    public function setId($id): void
     {
-
-    $this->id = $id;
-
+        $this->id = $id;
     }
 
+
+    /**
+     * @return int
+     */
     public function getChapterId(): ?int
     {
         return $this->chapter_id;
     }
 
+    /**
+     * @param int $chapter_id
+     */
     public function setChapterId($chapter_id): void
     {
         $chapter_id = (int) $chapter_id;
@@ -69,11 +80,17 @@ class Comments
         }
     }
 
+    /**
+     * @return string
+     */
     public function getAuthor(): ?string
     {
         return $this->author;
     }
 
+    /**
+     * @param string $author
+     */
     public function setAuthor(string $author): void
     {
 
@@ -81,11 +98,17 @@ class Comments
 
     }
 
+    /**
+     * @return string
+     */
     public function getComment(): ?string
     {
         return $this->comment;
     }
 
+    /**
+     * @param string $comment
+     */
     public function setComment(string $comment): void
     {
 
@@ -93,11 +116,17 @@ class Comments
 
     }
 
+    /**
+     * @return mixed
+     */
     public function getCommentDate()
     {
         return $this->comment_date;
     }
 
+    /**
+     * @param \DateTime $comment_date
+     */
     public function setCommentDate($comment_date): void
     {
         if (is_string($comment_date))
@@ -106,24 +135,36 @@ class Comments
         }
     }
 
+    /**
+     * @return mixed
+     */
     public function getReported()
     {
         return $this->reported;
     }
 
 
+    /**
+     * @param $reported
+     */
     public function setReported($reported): void
     {
         $this->reported = $reported;
     }
 
 
+    /**
+     * @return mixed
+     */
     public function getModerate()
     {
         return $this->moderate;
     }
 
 
+    /**
+     * @param $moderate
+     */
     public function setModerate($moderate): void
     {
         $this->moderate = $moderate;

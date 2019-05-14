@@ -31,7 +31,7 @@ ob_start ();
     <div class="form-group form-check">
         <label class="form-check-label" for="consent">
             <input type="hidden" name="consent" value="0">
-            <input type="checkbox" value="1" name="consent" id="consent" class="form-check-input" required/>J'accepte que les données saisies dans ce formulaire soient utilisées pour me contacter dans le cadre de ma demande, conformément à <a href="#">nos mentions légales</a>
+            <input type="checkbox" value="1" name="consent" id="consent" class="form-check-input" required/>J'accepte que les données saisies dans ce formulaire soient utilisées pour me contacter dans le cadre de ma demande, conformément à <a href="mentions-legales#ancre">nos mentions légales</a>
         </label>
     </div>
     <button type="submit" class="btn btn-primary">Envoyer</button>

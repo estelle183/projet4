@@ -15,7 +15,8 @@ ob_start();
                 </div>
             </div>
             <div class="d-flex justify-content-center form_container">
-                <form action="admin-new-password&token=<?= $admin->getToken()?>" method="post">
+                <form action="admin-new-password" method="post">
+                    <input type="text" value="<?= $admin->getToken()?>" name="token" required hidden>
                     <label for="password">Veuillez saisir votre nouveau mot de passe</label><br/>
                     <div class="input-group mb-3">
                         <div class="input-group-append">
@@ -36,6 +37,10 @@ ob_start();
                 <button type="submit" name="button" class="btn password_btn">Envoyer</button>
             </div>
             </form>
+            <div class="d-flex justify-content-center links alert-danger"><?php if (isset($_SESSION['flash'])) {
+                    echo $_SESSION['flash'];
+                    unset($_SESSION['flash']);
+                } ?></div>
         </div>
     </div>
 </div>

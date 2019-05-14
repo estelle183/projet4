@@ -16,10 +16,10 @@ ob_start();
                 <div class="post-preview">
                     <a href="chapitre&id=<?= $chapter->getId(); ?>">
                         <h2 class="post-title">
-                            <?= $chapter->getTitle(); ?>
+                            <?= htmlspecialchars ($chapter->getTitle()); ?>
                         </h2>
                         <h3 class="post-subtitle">
-                            <?= $chapter->getSubtitle(); ?>
+                            <?= htmlspecialchars ($chapter->getSubtitle()); ?>
                         </h3>
                         <p class="post-content"><?=substr ($chapter->getContent(), 0, 50); ?>...</p>
                     </a>

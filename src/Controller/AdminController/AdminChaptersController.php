@@ -6,7 +6,10 @@ use App\Model\ChapterManager;
 
 class AdminChaptersController {
 
-    public function AdminChaptersPage() { //Récupère tous les chapitres
+    /**
+     * Render all chapters
+     */
+    public function AdminChaptersPage() {
         $chManager = new ChapterManager();
         $chapters = $chManager->getChapters();
         require ('src/View/admin/listChapters.php');

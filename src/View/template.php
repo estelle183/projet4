@@ -60,7 +60,7 @@
                         </a>
                     </li>
                 </ul>
-                <p class="copyright text-muted">Copyright &copy; Your Website 2019</p>
+                <p class="copyright text-muted">Copyright &copy; Estelle Lorrillère 2019<br/><a href="mentions-legales">Mentions légales</a><br/>Site fictif réalisé dans le cadre de la formation Développeur Web Junior OpenClassrooms</p>
             </div>
         </div>
     </div>

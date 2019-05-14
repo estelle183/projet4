@@ -7,6 +7,10 @@ use App\Model\Chapters;
 
 class AdminDeleteChapterController
 {
+    /**
+     * Render a chapter to delete
+     * @param Chapters $chapter
+     */
     public function getChapter(Chapters $chapter) //Récupère un seul chapitre pour suppression
     {
         $chManager = new ChapterManager();
@@ -16,6 +20,10 @@ class AdminDeleteChapterController
 
     }
 
+    /**
+     * Delete a chapter and redirect to chapters list page
+     * @param Chapters $chapter
+     */
     public function deleteChapter(Chapters $chapter)
     {
         $chManager = new ChapterManager();

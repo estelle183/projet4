@@ -14,6 +14,11 @@ class AdminManager extends DbManager
         $this->db = self::dbConnect ();
     }
 
+    /**
+     * Select login and password in Database in terms of login
+     * @param Admin $admin
+     * @return mixed
+     */
     public function adminLogin(Admin $admin)
     {
         $req = $this->db->prepare ('SELECT login, password FROM Administration WHERE login = ?');
@@ -24,6 +29,11 @@ class AdminManager extends DbManager
         return $affectedLines;
     }
 
+    /**
+     * Select email in Database
+     * @param Admin $admin
+     * @return mixed
+     */
     public function adminPassword(Admin $admin)
 
     {
@@ -35,6 +45,11 @@ class AdminManager extends DbManager
         return $affectedLines;
     }
 
+    /**
+     * Add a token and token date
+     * @param Admin $admin
+     * @return bool
+     */
     public function addToken(Admin $admin)
     {
         $req = $this->db->prepare ('UPDATE Administration SET token=:token, token_date=NOW() WHERE email = :email');
@@ -47,6 +62,11 @@ class AdminManager extends DbManager
 
     }
 
+    /**
+     * Select token and token date in Database
+     * @param Admin $admin
+     * @return Admin
+     */
     public function adminToken(Admin $admin)
     {
         $req = $this->db->prepare('SELECT token, token_date FROM Administration WHERE token = ?');
@@ -61,6 +81,11 @@ class AdminManager extends DbManager
 
     }
 
+    /**
+     * Update new password in Database
+     * @param Admin $admin
+     * @return bool
+     */
     public function changePassword(Admin $admin) {
         $req = $this->db->prepare ('UPDATE Administration SET password=:password, token=NULL, token_date=NULL WHERE token = :token');
         $affectedLines = $req->execute (array(

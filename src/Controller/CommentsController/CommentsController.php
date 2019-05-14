@@ -10,6 +10,12 @@ use App\Model\Comments;
 class CommentsController
 {
 
+    /**
+     * Add a new comment and redirect to the chapter page
+     * @param $chapterId
+     * @param $author
+     * @param $message
+     */
     public function addComment($chapterId, $author, $message)
     {
         $comment = new Comments();
@@ -24,6 +30,11 @@ class CommentsController
     }
 
 
+    /**
+     * Report a comment and redirect to the chapter page
+     * @param Comments $comments
+     * @param $chapterId
+     */
     public function reportedComment(Comments $comments, $chapterId)
     {
         $coManager = new CommentsManager();

@@ -5,8 +5,12 @@ namespace App\Controller\ChaptersController;
 use App\Model\ChapterManager;
 use App\Model\Chapters;
 
-class ChapterController { //Récupère le chapitre sélectionné et ses commentaires
+class ChapterController {
 
+    /**
+     * Render the selected chapter and his comments
+     * @param Chapters $chapter
+     */
     public function ChapterWithComments(Chapters $chapter)
     {
             $chManager = new ChapterManager();

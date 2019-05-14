@@ -41,34 +41,51 @@ class Chapters
        return $this;
    }
 
+    /**
+     * @return int
+     */
     public function getId(): ?int
     {
         return $this->id;
     }
 
 
+    /**
+     * @return string
+     */
     public function getTitle(): ?string
     {
         return $this->title;
     }
 
+    /**
+     * @return string
+     */
     public function getSubtitle(): ?string
     {
         return $this->subtitle;
     }
 
-
+    /**
+     * @return string
+     */
     public function getContent(): ?string
     {
         return $this->content;
     }
 
 
+    /**
+     * @return mixed
+     */
     public function getCreationDate()
     {
         return $this->creation_date;
     }
 
+    /**
+     * @return mixed
+     */
     public function getUpdateDate()
     {
         return $this->update_date;
@@ -82,27 +99,35 @@ class Chapters
         return $this->comments;
     }
 
-
-    public function setId(int $id): void
+    /**
+     * @param mixed $id
+     */
+    public function setId($id): void
     {
-
-            $this->id = $id;
-
+        $this->id = $id;
     }
 
-
+    /**
+     * @param string $title
+     */
     public function setTitle(string $title): void
     {
 
             $this->title = $title;
     }
 
-    public function setSubtitle($subtitle): void
+    /**
+     * @param string $subtitle
+     */
+    public function setSubtitle(string $subtitle): void
     {
         $this->subtitle = $subtitle;
     }
 
 
+    /**
+     * @param string $content
+     */
     public function setContent(string $content): void
     {
 
@@ -111,6 +136,9 @@ class Chapters
     }
 
 
+    /**
+     * @param \DateTime $creation_date
+     */
     public function setCreationDate($creation_date): void
     {
         if (is_string($creation_date)) {
@@ -118,6 +146,9 @@ class Chapters
         }
     }
 
+    /**
+     * @param \DateTime $update_date
+     */
     public function setUpdateDate($update_date): void
     {
         $this->update_date = $update_date;

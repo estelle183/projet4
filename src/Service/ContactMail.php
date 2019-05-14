@@ -9,6 +9,10 @@ use PHPMailer\PHPMailer\Exception;
 
 class ContactMail
 {
+    /**
+     * Prepare email for contact form
+     * @param Contact $contact
+     */
     public function sendContactMailService(Contact $contact) {
         $mail = new PHPMailer(true);
         $userMail = $contact->getEmail ();

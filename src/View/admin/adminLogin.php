@@ -40,6 +40,10 @@ ob_start();
                     </div>
                 </div>
                 </form>
+                <div class="d-flex justify-content-center links alert-danger"><?php if (isset($_SESSION['flash'])) {
+                        echo $_SESSION['flash'];
+                        unset($_SESSION['flash']);
+                    } ?></div>
             </div>
         </div>
     </div>

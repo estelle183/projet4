@@ -23,10 +23,10 @@ ob_start();
 
 
                 <tr>
-                    <td><?= $co->getDateSend (); ?></td>
-                    <td><?= $co->getName (); ?></td>
-                    <td><?= $co->getEMail (); ?></td>
-                    <td><?= $co->getSubject (); ?></td>
+                    <td><?= htmlspecialchars($co->getDateSend ()); ?></td>
+                    <td><?= htmlspecialchars($co->getName ()); ?></td>
+                    <td><?= htmlspecialchars($co->getEMail ()); ?></td>
+                    <td><?= htmlspecialchars($co->getSubject ()); ?></td>
             <td align="center"><a class="btn btn-admin btn-info btn-xs" href="admin-mail&id=<?= $co->getId(); ?>"><i class="fas fa-envelope-open-text"></i></td>
                     <td align="center"><?php if ($co->getProcessed() == 0) : ?><a class="btn btn-admin btn-info btn-xs" href="adminProcessedMail&id=<?= $co->getId(); ?>"><i class="fas fa-folder-open"></i></a>
                 <?php else: ?>Mail classé</td>
