@@ -43,96 +43,138 @@ class Contact
     }
 
 
-    public function getId()
+    /**
+     * @return int
+     */
+    public function getId() :?int
     {
         return $this->id;
     }
 
-
+    /**
+     * @param mixed $id
+     */
     public function setId($id): void
     {
         $this->id = $id;
     }
 
-
-    public function getName()
+    /**
+     * @return string
+     */
+    public function getName() :?string
     {
         return $this->name;
     }
 
 
-    public function setName($name): void
+    /**
+     * @param string $name
+     */
+    public function setName(string $name): void
     {
         $this->name = $name;
     }
 
 
+    /**
+     * @return mixed
+     */
     public function getEmail()
     {
         return $this->email;
     }
 
 
+    /**
+     * @param $email
+     */
     public function setEmail($email): void
     {
         $this->email = $email;
     }
 
 
-    public function getSubject()
+    /**
+     * @return string
+     */
+    public function getSubject(): ?string
     {
         return $this->subject;
     }
 
 
-    public function setSubject($subject): void
+    /**
+     * @param string $subject
+     */
+    public function setSubject(string $subject): void
     {
         $this->subject = $subject;
     }
 
 
-    public function getMessage()
+    /**
+     * @return string
+     */
+    public function getMessage(): ?string
     {
         return $this->message;
     }
 
 
-    public function setMessage($message): void
+    /**
+     * @param string $message
+     */
+    public function setMessage(string $message): void
     {
         $this->message = $message;
     }
 
 
+    /**
+     * @return mixed
+     */
     public function getDateSend()
     {
         return $this->date_send;
     }
 
 
+    /**
+     * @param \DateTime $date_send
+     */
     public function setDateSend($date_send): void
     {
         $this->date_send = $date_send;
     }
 
-
+    /**
+     * @return mixed
+     */
     public function getConsent()
     {
         return $this->consent;
     }
 
-
+    /**
+     * @param $consent
+     */
     public function setConsent($consent): void
     {
         $this->consent = $consent;
     }
 
-
+    /**
+     * @return mixed
+     */
     public function getProcessed()
     {
         return $this->processed;
     }
 
-
+    /**
+     * @param $processed
+     */
     public function setProcessed($processed): void
     {
         $this->processed = $processed;

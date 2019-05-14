@@ -7,8 +7,8 @@ ob_start();
         <h2 class="heading-title">Supprimer un chapitre</h2>
     </div>
 <div class="post-preview">
-    <h1 class="post-title"><?= $result->getTitle(); ?></h1>
-    <h2 class="post-subtitle"><?= $result->getSubtitle(); ?></h2>
+    <h1 class="post-title"><?= htmlspecialchars($result->getTitle()); ?></h1>
+    <h2 class="post-subtitle"><?= htmlspecialchars($result->getSubtitle()); ?></h2>
     <p class="post-meta">Ajouté le <?= $result->getCreationDate(); ?></p>
 <?php if ($result->getUpdateDate () != NULL) : ?>
     <p class="post-meta">Modifié le <?= $result->getUpdateDate (); ?></p>

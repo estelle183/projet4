@@ -13,7 +13,11 @@ class ChapterManager extends DbManager
         $this->db = self::dbConnect();
     }
 
-    public function getChapters() //Récupérer tous les chapitres
+    /**
+     * Get all chapters
+     * @return array
+     */
+    public function getChapters()
     {
         $req = $this->db->query('SELECT id, title, subtitle, content, DATE_FORMAT(creation_date, \' %d/%m/%Y à %Hh %imin %ss\') AS creationDate, DATE_FORMAT(update_date, \' %d/%m/%Y à %Hh %imin %ss\')  AS updateDate FROM chapters ORDER BY creation_date DESC ');
         $results = $req->fetchAll(PDO::FETCH_ASSOC);
@@ -28,7 +32,11 @@ class ChapterManager extends DbManager
         return $chapters;
     }
 
-    public function getFiveLastChapters() //Récupérer les 3 derniers chapitres
+    /**
+     * Get three last chapters
+     * @return array
+     */
+    public function getThreeLastChapters()
     {
         $req = $this->db->query('SELECT id, title, subtitle, content, DATE_FORMAT(creation_date, \' %d/%m/%Y à %Hh %imin %ss\') AS creationDate, DATE_FORMAT(update_date, \' %d/%m/%Y à %Hh %imin %ss\')  AS updateDate FROM chapters ORDER BY creation_date DESC LIMIT 0, 3');
         $results = $req->fetchAll(PDO::FETCH_ASSOC);
@@ -43,7 +51,12 @@ class ChapterManager extends DbManager
         return $chapters;
     }
 
-    public function getChapter (Chapters $chapter) // Récupérer un seul chapitre
+    /**
+     * Get one chapter
+     * @param Chapters $chapter
+     * @return Chapters
+     */
+    public function getChapter (Chapters $chapter)
     {
         $req = $this->db->prepare ('SELECT id, title, subtitle, content, DATE_FORMAT(creation_date, \' %d/%m/%Y à %Hh %imin %ss\') AS creationDate, DATE_FORMAT(update_date, \' %d/%m/%Y à %Hh %imin %ss\')  AS updateDate FROM chapters WHERE id = :id');
         $req->execute (array(
@@ -60,8 +73,12 @@ class ChapterManager extends DbManager
         return $chapter;
     }
 
-
-    public function getChapterWithComments (Chapters $chapters) // Récupérer un seul chapitre et ses commentaires associés
+    /**
+     * Get one chapter with his comments
+     * @param Chapters $chapters
+     * @return Chapters|bool
+     */
+    public function getChapterWithComments (Chapters $chapters)
     {
         $req = $this->db->prepare ('SELECT ch.id, ch.title, ch.subtitle, ch.content, DATE_FORMAT(ch.creation_date, \' %d/%m/%Y à %Hh %imin %ss\') AS creationDate, DATE_FORMAT(ch.update_date, \' %d/%m/%Y à %Hh %imin %ss\') AS updateDate, co.id AS co_id, co.author, co.comment, DATE_FORMAT(co.comment_date, \'%d/%m/%Y à %Hh%imin%ss\') AS commentDate, co.reported, co.moderate FROM chapters ch LEFT JOIN comments co ON co.chapter_id = ch.id WHERE ch.id = ?');
         $req->execute (array($chapters->getId ()));
@@ -96,7 +113,12 @@ class ChapterManager extends DbManager
         }
     }
 
-    public function addChapter (Chapters $chapter) { // Insérer un nouveau chapitre
+    /**
+     * Add a new chapter
+     * @param Chapters $chapter
+     * @return bool
+     */
+    public function addChapter (Chapters $chapter) {
         $req = $this->db->prepare('INSERT INTO chapters(title, subtitle, content, creation_date) VALUES (:title, :subtitle, :content, NOW())');
         $affectedLines = $req->execute (array(
             'title' => $chapter->getTitle (),
@@ -107,7 +129,12 @@ class ChapterManager extends DbManager
         return $affectedLines;
     }
 
-    public function deleteChapter (Chapters $chapter) { //Supprimer un chapitre
+    /**
+     * Delete a chapter
+     * @param Chapters $chapter
+     * @return bool
+     */
+    public function deleteChapter (Chapters $chapter) {
         $req = $this->db->prepare('DELETE FROM chapters WHERE id= :id');
         $affectedLines = $req->execute (array(
             'id' => $chapter->getId (),
@@ -116,7 +143,12 @@ class ChapterManager extends DbManager
         return $affectedLines;
     }
 
-    public function updateChapter(Chapters $chapter) { //Modifier un chapitre
+    /**
+     * Update a chapter
+     * @param Chapters $chapter
+     * @return bool
+     */
+    public function updateChapter(Chapters $chapter) {
         $req = $this->db->prepare ('UPDATE chapters SET title= :title, subtitle= :subtitle, content= :content, update_date= NOW() WHERE id = :id');
         $affectedLines = $req->execute (array(
             'id' => $chapter->getId (),
@@ -128,7 +160,11 @@ class ChapterManager extends DbManager
         return $affectedLines;
     }
 
-    public function chapterCount() { //Récupérer le nombre de chapitres
+    /**
+     * Count the number of chapters
+     * @return mixed
+     */
+    public function chapterCount() {
         $req = $this->db->query('SELECT COUNT(*) AS nbChapters FROM chapters');
         $result = $req->fetchColumn ();
 

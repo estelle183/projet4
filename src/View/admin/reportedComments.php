@@ -7,7 +7,7 @@ ob_start ();
         <img src="public/images/heading.jpg" class="heading-logo" width="100px">
         <h2 class="heading-title">Commentaires signalés</h2>
     </div>
-    <div class="admin-table responsive-table-line table table-striped" style="margin:10px 2%;">
+    <div class="admin-table responsive-table-line table table-striped">
         <table class="table table-bordered table-condensed table-body-center" >
     <tr>
         <th scope="col">Date de création</th>
@@ -23,8 +23,8 @@ ob_start ();
 
         <tr>
             <td><?= $co->getCommentDate (); ?></td>
-            <td><?= $co->getAuthor (); ?></td>
-            <td><?= $co->getComment (); ?></td>
+            <td><?= htmlspecialchars($co->getAuthor ()); ?></td>
+            <td><?= htmlspecialchars($co->getComment ()); ?></td>
             <td align="center"><a class="btn btn-admin btn-info btn-xs" href="adminCancelReport&id=<?= $co->getId(); ?>"><i class="fas fa-play"></i></a>
             <td align="center"><?php if($co->getModerate() == 0) : ?><a class="btn btn-admin  btn-danger btn-xs" href="adminModerate&id=<?= $co->getId(); ?>"><i class="far fa-stop-circle"></i></a>
 

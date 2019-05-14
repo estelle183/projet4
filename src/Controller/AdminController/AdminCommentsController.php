@@ -7,6 +7,9 @@ use App\Model\Comments;
 
 class AdminCommentsController {
 
+    /**
+     * Show all reported comments
+     */
     public function adminReportedComments() {
         $coManager = new CommentsManager();
         $comments = $coManager->getComments();
@@ -14,6 +17,9 @@ class AdminCommentsController {
         require ('src/View/admin/reportedComments.php');
     }
 
+    /**
+     * Show all moderate comments
+     */
     public function adminModerateComments() {
         $coManager = new CommentsManager();
         $comments = $coManager->getComments();

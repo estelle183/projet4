@@ -7,7 +7,7 @@ ob_start ();
 
         <div class="row section-heading shadow p-3 mb-5 bg-white rounded">
             <img src="public/images/heading.jpg" class="heading-logo" width="100px">
-            <h2 class="heading-title"><?= $result->getTitle (); ?></h2>
+            <h2 class="heading-title"><?= htmlspecialchars ($result->getTitle ()); ?></h2>
 
         </div>
 
@@ -17,7 +17,7 @@ ob_start ();
             <div class="col-lg-12">
                 <div class="post-preview">
 
-                <h3 class="post-subtitle"><?= $result->getSubtitle (); ?></h3>
+                <h3 class="post-subtitle"><?= htmlspecialchars ($result->getSubtitle ()); ?></h3>
 
                 <hr>
 
@@ -38,7 +38,8 @@ ob_start ();
                 <div class="card my-4">
                     <h5 class="card-header">Laissez un commentaire:</h5>
                     <div class="card-body">
-                        <form action="addComment&id=<?= $result->getId () ?>" method="post">
+                        <form action="addComment" method="post">
+                            <input type="text" value="<?= $result->getId () ?>" name="id" required hidden>
                             <div class="form-group">
                                 <label for="pseudo">Pseudo</label> :
                                 <input type="text" name="pseudo" id="pseudo" class="form-control" required/><br/>
@@ -65,7 +66,7 @@ ob_start ();
                                     <header class="comment-header">
                                         <div class="comment-user"><i class="fa fa-user"></i><?php if ($co->getModerate () == 1) : ?>
                                                 Utilisateur supprimé
-    <?php else : ?><?= $co->getAuthor (); ?>
+    <?php else : ?><?= htmlspecialchars ($co->getAuthor ()); ?>
 
                                             <?php endif; ?>
                                         </div>
@@ -76,7 +77,7 @@ ob_start ();
                                         <?php if ($co->getModerate () == 1) : ?>
                                             <p class="comment-moderate">Ce commentaire est modéré par l'administrateur</p>
                                         <?php else : ?>
-                                            <p><?= $co->getComment (); ?></p>
+                                            <p><?= htmlspecialchars ($co->getComment ()); ?></p>
                                         <?php endif; ?>
 
                                     </div>

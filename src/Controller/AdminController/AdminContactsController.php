@@ -8,6 +8,9 @@ use App\Model\Contact;
 
 class AdminContactsController
 {
+    /**
+     * Show contacts page
+     */
     public function adminContactsPage() {
         $coManager = new ContactManager();
         $contacts = $coManager->getContacts ();
@@ -15,12 +18,20 @@ class AdminContactsController
 
     }
 
+    /**
+     * Processed select mail and redirect to the contacts page
+     * @param Contact $contact
+     */
     public function adminProcessedMail(Contact $contact) {
         $coManager = new ContactManager();
         $result = $coManager->processedMail ($contact);
         header ('Location: admin-gestion-contacts');
     }
 
+    /**
+     * Render one email
+     * @param Contact $contact
+     */
     public function getMail(Contact $contact) //Récupère un seul mail
     {
         $coManager = new ContactManager();
@@ -30,6 +41,9 @@ class AdminContactsController
 
     }
 
+    /**
+     * Render all email
+     */
     public function adminAllContactsPage() {
         $coManager = new ContactManager();
         $contacts = $coManager->getContacts ();

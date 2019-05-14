@@ -9,11 +9,19 @@ use App\Model\AdminManager;
 
 class AdminLoginController
 {
+    /**
+     * Render the admin login page
+     */
 public function adminLoginPage() {
 
 require ('src/View/admin/adminLogin.php');
 }
 
+    /**
+     * Check login and password and redirect to admin homepage
+     * @param $pseudo
+     * @param $password
+     */
 public function checkLogin($pseudo, $password) {
     $admin = new Admin();
     $admin->setLogin ($pseudo);
@@ -36,10 +44,14 @@ public function checkLogin($pseudo, $password) {
             $_SESSION['connect'] = 1;
             header('Location: admin-accueil');
         } else {
-            echo "Mauvais mdp";
+            $_SESSION['flash'] = "Mauvais login et/ou mot de passe";
+            $flash = $_SESSION['flash'];
+            header('Location: admin-connexion');
         }
     } else {
-        echo "Mauvais login";
+        $_SESSION['flash'] = "Mauvais login et/ou mot de passe";
+        $flash = $_SESSION['flash'];
+        header('Location: admin-connexion');
     }
     $_SESSION['LAST_ACTIVITY'] = $time;
 }

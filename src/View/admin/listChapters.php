@@ -14,7 +14,7 @@ ob_start();
     <tr>
     <th scope="col">Date de création /modification</th>
     <th scope="col">Titre / Sous-titre</th>
-    <th scope="col">Contenu</th>
+    <th scope="col" class="d-none d-lg-table-cell">Contenu</th>
     <th scope="col">Modification</th>
         <th scope="col">Suppression</th>
     </tr>
@@ -23,8 +23,8 @@ ob_start();
     <tr>
 
         <td><?= $chapter->getCreationDate();  ?><br/><?= $chapter->getUpdateDate(); ?></td>
-        <td><?= $chapter->getTitle(); ?><br/><?= $chapter->getSubtitle(); ?></td>
-        <td><?=substr ($chapter->getContent(), 0, 20); ?>...</td>
+        <td><?= htmlspecialchars($chapter->getTitle()); ?><br/><?= htmlspecialchars($chapter->getSubtitle()); ?></td>
+        <td class="d-none d-lg-table-cell"><?=substr ($chapter->getContent(), 0, 20); ?>...</td>
         <td align="center"><a class="btn btn-admin btn-info btn-xs" href="admin-modification-chapitre&id=<?= $chapter->getId(); ?>"><i class="fas fa-pencil-alt"></i></a></td>
 
         <td align="center"><a class="btn btn-admin btn-danger btn-xs"href="admin-suppression-chapitre&id=<?= $chapter->getId(); ?>"><i class="fas fa-trash-alt"></i></a></td>

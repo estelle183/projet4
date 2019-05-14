@@ -9,10 +9,17 @@ use App\Service\ResetPasswordMail;
 
 class AdminNewPasswordController
 {
+    /**
+     * Show forgot password page
+     */
     public function adminForgotPasswordPage() {
         require ('src/View/admin/AdminForgotPassword.php');
     }
 
+    /**
+     * check email and create a token if email is found in database
+     * @param $email
+     */
     public function checkEmail ($email) {
         $admin = new Admin();
         $admin->setEmail ($email);
@@ -33,6 +40,11 @@ class AdminNewPasswordController
 
     }
 
+    /**
+     * check token and token date and show new password page if the conditions are verified
+     * @param $token
+     * @throws \Exception
+     */
     public function resetPasswordForm($token) {
 
 $admin = new Admin();
@@ -44,7 +56,7 @@ if ($token == $checkAdmin->getToken ()) {
     $tokenDate = new \DateTime($checkAdmin->getTokenDate ());
     $date = new \DateTime();
     $dif = $date->diff($tokenDate);
-    if ($dif->i < 30) {
+    if ($dif->i < 60) {
         require ('src/View/admin/AdminNewPassword.php');
     } else {
         require ('src/View/erreur404.php');
@@ -55,6 +67,11 @@ if ($token == $checkAdmin->getToken ()) {
 
     }
 
+    /**
+     * Update the password and redirect to admin connection page
+     * @param $token
+     * @param $password
+     */
     public function changePassword ($token, $password) {
         $admin = new Admin();
         $admin->setToken ($token);

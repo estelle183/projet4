@@ -156,6 +156,10 @@ img::-moz-selection {
 
 }
 
+.dropdown-menu > li > a.nav-link {
+  color : #F5F5F5!important;
+}
+
 .dropdown-menu {
   background-color: #00657b;
   border : none;

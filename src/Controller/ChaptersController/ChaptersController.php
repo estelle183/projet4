@@ -5,8 +5,11 @@ namespace App\Controller\ChaptersController;
 
 use App\Model\ChapterManager;
 
-class ChaptersController { //Récupère tous les chapitres
+class ChaptersController {
 
+    /**
+     * Show all chapters
+     */
     public function ChaptersPage() {
         $chManager = new ChapterManager();
         $chapters = $chManager->getChapters();
