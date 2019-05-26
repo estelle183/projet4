@@ -1,3 +1,4 @@
+<?php $title = "Connexion administrateur"; ?>
 <?php
 ob_start();
 ?>
@@ -35,8 +36,8 @@ ob_start();
                     <button type="submit" name="button" class="btn login_btn">Connexion</button>
                 </div>
                 <div class="mt-4">
-                    <div class="d-flex justify-content-center links">
-                        Mot de passe oublié ? <br/><a href="admin-oubli-motdepasse"> Cliquez ici</a>
+                    <div class="d-flex justify-content-center links" style="font-size: 15px">
+                        Mot de passe oublié ? <br/> <a href="admin-oubli-motdepasse"> Cliquez ici</a>
                     </div>
                 </div>
                 </form>

@@ -1,3 +1,4 @@
+<?php $title = "Mot de passe oublié"; ?>
 <?php
 ob_start();
 ?>

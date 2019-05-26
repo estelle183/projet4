@@ -1,3 +1,4 @@
+<?php $title = "Gestion des contacts"; ?>
 <?php
 ob_start();
 ?>
@@ -28,7 +29,7 @@ ob_start();
                     <td class="d-none d-sm-table-cell"><?= htmlspecialchars($co->getEMail ()); ?></td>
                     <td><?= htmlspecialchars($co->getSubject ()); ?></td>
                     <td align="center"><a class="btn btn-admin btn-info btn-xs" href="admin-mail&id=<?= $co->getId(); ?>"><i class="fas fa-envelope-open-text"></i></td>
-                    <td align="center"><a class="btn btn-admin btn-info btn-xs" href="adminProcessedMail&id=<?= $co->getId(); ?>"><i class="fas fa-folder-open"></i></a></td>
+                    <td align="center"><a class="btn btn-admin btn-info btn-xs" href="adminProcessedMail&id=<?= $co->getId(); ?>" onclick="return confirm('Etes-vous sûr de vouloir classer ce mail ?')"><i class="fas fa-folder-open"></i></a></td>
                 </tr>
 
             <?php endif; ?>

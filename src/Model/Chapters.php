@@ -76,7 +76,7 @@ class Chapters
 
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getCreationDate()
     {
@@ -84,7 +84,7 @@ class Chapters
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getUpdateDate()
     {

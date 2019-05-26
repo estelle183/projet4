@@ -1,3 +1,4 @@
+<?php $title = "Supression d'un chapitre"; ?>
 <?php
 ob_start();
 ?>

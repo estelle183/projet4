@@ -39,3 +39,7 @@
   }
 
 })(jQuery); // End of use strict
+
+$(document).ready(function(){
+  $('.dropdown-toggle').dropdown();
+});

@@ -105,7 +105,9 @@ elseif ($url === 'contact-form') {
             $contact = new ContactController();
             $contact->sendContactForm ($_POST['name'], $_POST['email'], $_POST['subject'], $_POST['message'], $_POST['consent']);
         }
-            echo 'L\'adresse ' . $_POST['email'] . ' n\'est pas valide, recommencez !';
+            $_SESSION['flash'] = 'L\'adresse ' . $_POST['email'] . ' n\'est pas valide, recommencez !';
+            $flash = $_SESSION['flash'];
+            header("location:".  $_SERVER['HTTP_REFERER']);
     }
 } else {
         $error = new ErrorController();
@@ -171,9 +173,9 @@ elseif ($url === 'admin-new-password') {
                     $password = new AdminNewPasswordController();
                     $password->changePassword ($_POST['token'], password_hash ($_POST['password'], PASSWORD_BCRYPT));
                 } else {
-                    header("location:".  $_SERVER['HTTP_REFERER']);
                     $_SESSION['flash'] = "Les mots de passe ne sont pas identiques, recommencez !";
                     $flash = $_SESSION['flash'];
+                    header("location:".  $_SERVER['HTTP_REFERER']);
 
                 }
             }

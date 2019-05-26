@@ -1,3 +1,4 @@
+<?php $title = "Mail"; ?>
 <?php
 ob_start();
 ?>

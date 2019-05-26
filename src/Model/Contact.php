@@ -78,18 +78,18 @@ class Contact
 
 
     /**
-     * @return mixed
+     * @return string
      */
-    public function getEmail()
+    public function getEmail(): ?string
     {
         return $this->email;
     }
 
 
     /**
-     * @param $email
+     * @param string $email
      */
-    public function setEmail($email): void
+    public function setEmail(string $email): void
     {
         $this->email = $email;
     }
@@ -132,7 +132,7 @@ class Contact
 
 
     /**
-     * @return mixed
+     * @return \DateTime
      */
     public function getDateSend()
     {
@@ -149,33 +149,33 @@ class Contact
     }
 
     /**
-     * @return mixed
+     * @return bool
      */
-    public function getConsent()
+    public function getConsent(): ?bool
     {
         return $this->consent;
     }
 
     /**
-     * @param $consent
+     * @param bool $consent
      */
-    public function setConsent($consent): void
+    public function setConsent(bool $consent): void
     {
         $this->consent = $consent;
     }
 
     /**
-     * @return mixed
+     * @return bool
      */
-    public function getProcessed()
+    public function getProcessed(): ?bool
     {
         return $this->processed;
     }
 
     /**
-     * @param $processed
+     * @param bool $processed
      */
-    public function setProcessed($processed): void
+    public function setProcessed(bool $processed): void
     {
         $this->processed = $processed;
     }

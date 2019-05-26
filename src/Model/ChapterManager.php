@@ -162,7 +162,7 @@ class ChapterManager extends DbManager
 
     /**
      * Count the number of chapters
-     * @return mixed
+     * @return string
      */
     public function chapterCount() {
         $req = $this->db->query('SELECT COUNT(*) AS nbChapters FROM chapters');

@@ -11,7 +11,7 @@ class AdminDeleteChapterController
      * Render a chapter to delete
      * @param Chapters $chapter
      */
-    public function getChapter(Chapters $chapter) //Récupère un seul chapitre pour suppression
+    public function getChapter(Chapters $chapter)
     {
         $chManager = new ChapterManager();
         $result = $chManager->getChapter ($chapter);

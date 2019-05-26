@@ -117,7 +117,7 @@ class Comments
     }
 
     /**
-     * @return mixed
+     * @return \DateTime
      */
     public function getCommentDate()
     {
@@ -136,36 +136,36 @@ class Comments
     }
 
     /**
-     * @return mixed
+     * @return bool
      */
-    public function getReported()
+    public function getReported(): ?bool
     {
         return $this->reported;
     }
 
 
     /**
-     * @param $reported
+     * @param bool $reported
      */
-    public function setReported($reported): void
+    public function setReported(bool $reported): void
     {
         $this->reported = $reported;
     }
 
 
     /**
-     * @return mixed
+     * @return bool
      */
-    public function getModerate()
+    public function getModerate(): ?bool
     {
         return $this->moderate;
     }
 
 
     /**
-     * @param $moderate
+     * @param bool $moderate
      */
-    public function setModerate($moderate): void
+    public function setModerate(bool $moderate): void
     {
         $this->moderate = $moderate;
     }
