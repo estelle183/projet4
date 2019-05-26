@@ -1,3 +1,4 @@
+<?php $title = "Mentions légales"; ?>
 <?php
 ob_start ();
 

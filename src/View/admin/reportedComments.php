@@ -1,3 +1,4 @@
+<?php $title = "Commentaires signalés"; ?>
 <?php
 ob_start ();
 ?>
@@ -8,11 +9,11 @@ ob_start ();
         <h2 class="heading-title">Commentaires signalés</h2>
     </div>
     <div class="admin-table responsive-table-line table table-striped">
-        <table class="table table-bordered table-condensed table-body-center" >
+        <table class="table table-bordered table-condensed table-body-center table-responsive-sm" >
     <tr>
         <th scope="col">Date de création</th>
         <th scope="col">Auteur</th>
-        <th scope="col">Contenu</th>
+        <th class="th-lg" scope="col">Contenu</th>
         <th scope="col">Annuler le signalement</th>
         <th scope="col">Modérer le commentaire</th>
     </tr>
@@ -25,8 +26,8 @@ ob_start ();
             <td><?= $co->getCommentDate (); ?></td>
             <td><?= htmlspecialchars($co->getAuthor ()); ?></td>
             <td><?= htmlspecialchars($co->getComment ()); ?></td>
-            <td align="center"><a class="btn btn-admin btn-info btn-xs" href="adminCancelReport&id=<?= $co->getId(); ?>"><i class="fas fa-play"></i></a>
-            <td align="center"><?php if($co->getModerate() == 0) : ?><a class="btn btn-admin  btn-danger btn-xs" href="adminModerate&id=<?= $co->getId(); ?>"><i class="far fa-stop-circle"></i></a>
+            <td align="center"><a class="btn btn-admin btn-info btn-xs" href="adminCancelReport&id=<?= $co->getId(); ?>" onclick="return confirm('Etes-vous sûr de vouloir annuler le signalement ?')"><i class="fas fa-play"></i></a>
+            <td align="center"><?php if($co->getModerate() == 0) : ?><a class="btn btn-admin  btn-danger btn-xs" href="adminModerate&id=<?= $co->getId(); ?>" onclick="return confirm('Etes-vous sûr de vouloir modérer ce commentaire ?')"><i class="far fa-stop-circle"></i></a>
 
                 <?php endif; ?></td>
         </tr>

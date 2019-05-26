@@ -1,3 +1,4 @@
+<?php $title = $result->getTitle (); ?>
 <?php
 ob_start ();
 

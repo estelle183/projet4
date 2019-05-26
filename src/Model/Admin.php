@@ -49,25 +49,25 @@ class Admin
     }
 
     /**
-     * @param mixed $id
+     * @param int $id
      */
-    public function setId($id): void
+    public function setId(int $id): void
     {
         $this->id = $id;
     }
 
     /**
-     * @return mixed
+     * @return string
      */
-    public function getEmail()
+    public function getEmail(): ?string
     {
         return $this->email;
     }
 
     /**
-     * @param $email
+     * @param string $email
      */
-    public function setEmail($email): void
+    public function setEmail(string $email): void
     {
         $this->email = $email;
     }
@@ -89,39 +89,39 @@ class Admin
     }
 
     /**
-     * @return mixed
+     * @return string
      */
-    public function getPassword()
+    public function getPassword(): ?string
     {
         return $this->password;
     }
 
     /**
-     * @param $password
+     * @param string $password
      */
-    public function setPassword($password): void
+    public function setPassword(string $password): void
     {
         $this->password = $password;
     }
 
     /**
-     * @return mixed
+     * @return string
      */
-    public function getToken()
+    public function getToken(): ?string
     {
         return $this->token;
     }
 
     /**
-     * @param $token
+     * @param string $token
      */
-    public function setToken($token): void
+    public function setToken(string $token): void
     {
         $this->token = $token;
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getTokenDate()
     {
@@ -129,7 +129,7 @@ class Admin
     }
 
     /**
-     * @param $token_date
+     * @param string $token_date
      */
     public function setTokenDate($token_date): void
     {

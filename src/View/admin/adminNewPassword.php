@@ -1,3 +1,4 @@
+<?php $title = "Changement du mot de passe"; ?>
 <?php
 ob_start();
 ?>

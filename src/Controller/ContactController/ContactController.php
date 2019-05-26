@@ -39,6 +39,6 @@ public function sendContactForm($name, $email, $subject, $message, $consent) {
     $sendMail->sendContactMailService ($contact);
     $_SESSION['flash'] = "Votre message a bien été envoyé";
     $flash = $_SESSION['flash'];
-    header("Location: contact");
+    header('Location: contact');
 }
 }

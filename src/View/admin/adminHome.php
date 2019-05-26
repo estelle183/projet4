@@ -1,3 +1,4 @@
+<?php $title = "Accueil administrateur"; ?>
 <?php
 ob_start();
 ?>
@@ -21,7 +22,7 @@ ob_start();
                             Chapitres
                         </div>
                         <div class="circle-tile-number text-faded">
-                            <?= $nbChapters; ?>
+                            <?= htmlspecialchars ($nbChapters); ?>
                             <span id="sparklineA"></span>
                         </div>
                         <a href="admin-liste-chapitres" class="circle-tile-footer"><i class="fa fa-chevron-circle-right"></i></a>
@@ -40,7 +41,7 @@ ob_start();
                             Commentaires signalés
                         </div>
                         <div class="circle-tile-number text-faded">
-                            <?= $nbReports; ?>
+                            <?= htmlspecialchars ($nbReports); ?>
                         </div>
                         <a href="admin-signalement" class="circle-tile-footer"><i class="fa fa-chevron-circle-right"></i></a>
                     </div>
@@ -58,7 +59,7 @@ ob_start();
                             Commentaires modérés
                         </div>
                         <div class="circle-tile-number text-faded">
-                            <?= $nbModerate; ?>
+                            <?= htmlspecialchars ($nbModerate); ?>
                             <span id="sparklineC"></span>
                         </div>
                         <a href="admin-moderation" class="circle-tile-footer"><i class="fa fa-chevron-circle-right"></i></a>
@@ -77,7 +78,7 @@ ob_start();
                             Messages
                         </div>
                         <div class="circle-tile-number text-faded">
-                            <?= $nbProcessed; ?>
+                            <?= htmlspecialchars ($nbProcessed); ?>
                             <span id="sparklineB"></span>
                         </div>
                         <a href="admin-gestion-contacts" class="circle-tile-footer"><i class="fa fa-chevron-circle-right"></i></a>
@@ -122,5 +123,5 @@ ob_start();
     </script>
 <?php
 $content=ob_get_clean ();
-require('src/View/template.php');
+require 'src/View/template.php';
 ?>

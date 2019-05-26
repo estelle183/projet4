@@ -18,15 +18,15 @@
                     </li>
 
                 <?php else : ?>
-                <li class="nav-item">
-                    <a class="nav-link" href="/">Accueil</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="chapitres">Chapitres</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="contact">Contact</a>
-                </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/">Accueil</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="chapitres">Chapitres</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact">Contact</a>
+                    </li>
                     <li class="nav-item">
                         <a class="nav-link" href="auteur">L'auteur</a>
                     </li>
@@ -34,9 +34,9 @@
 
                 <?php if(isset($_SESSION['pseudo'])) : ?>
 
-                <li class="nav-item">
-                    <a class="nav-link" href="admin-accueil">Accueil Administrateur</a>
-                </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="admin-accueil">Accueil Administrateur</a>
+                    </li>
                     <li class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown">Gestion des chapitres<b class="caret"></b></a>
                         <ul class="dropdown-menu">
@@ -51,18 +51,19 @@
                             <li><a class="nav-link" href="admin-moderation">Commentaires modérés</a></li>
                         </ul>
                     </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="admin-gestion-contacts">Gestion des contacts</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="admin-deconnexion">Déconnexion</a>
-                </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="admin-gestion-contacts">Gestion des contacts</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="admin-deconnexion">Déconnexion</a>
+                    </li>
                 <?php else : ?>
-                <li class="nav-item">
-                    <a class="nav-link" href="admin-connexion">Connexion</a>
-                </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="admin-connexion">Connexion</a>
+                    </li>
                 <?php endif; ?>
             </ul>
+        </div>
     </div>
 </nav>
 

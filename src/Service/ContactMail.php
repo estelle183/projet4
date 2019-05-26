@@ -19,19 +19,20 @@ class ContactMail
         $userName = $contact->getName ();
         $userMessage = $contact->getMessage ();
         try{
-            $mail->SMTPDebug = 2;
-            $mail->isSMTP();
+            $mail->SMTPDebug = 1;
+            //$mail->isSMTP();
+            $mail->isSendmail ();
             $mail->Host = 'smtp.gmail.com';
             $mail->SMTPAuth = true;
-            $mail->Username = 'estelle183@gmail.com';
-            $mail->Password = 'maximedaniel221088';
+            $mail->Username = 'alaska.billet.simple@gmail.com';
+            $mail->Password = 'alaska210';
             $mail->SMTPSecure = 'ssl';
             $mail->Port = 465;
             $mail->setLanguage('fr', 'src/vendor/phpmailer/phpmailer/language');
 
 
             $mail->setFrom($contact->getEmail (), $contact->getName ());
-            $mail->addAddress('estelle183@gmail.com');
+            $mail->addAddress('contact@billet-simple-alaska.estelle-lorrillere.fr');
 
             $mail->isHTML(true);
             $mail->Subject = $contact->getSubject();

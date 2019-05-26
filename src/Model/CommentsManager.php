@@ -113,7 +113,7 @@ class CommentsManager extends DbManager
 
     /**
      * Count the number of comments
-     * @return mixed
+     * @return string
      */
     public function commentsCount() {
         $req = $this->db->query('SELECT COUNT(*) AS nbComments FROM comments');
@@ -125,7 +125,7 @@ class CommentsManager extends DbManager
 
     /**
      * Count the number of reported comments
-     * @return mixed
+     * @return string
      */
     public function commentsReportedCount() {
         $req = $this->db->query('SELECT COUNT(*) AS nbReport FROM comments WHERE reported = 1 && moderate = 0');
@@ -136,7 +136,7 @@ class CommentsManager extends DbManager
 
     /**
      * Count the number of moderate comments
-     * @return mixed
+     * @return string
      */
     public function commentsModerateCount() {
         $req = $this->db->query('SELECT COUNT(*) AS nbReport FROM comments WHERE moderate = 1');

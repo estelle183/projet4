@@ -1,3 +1,4 @@
+<?php $title = "Commentaires modérés"; ?>
 <?php
 ob_start ();
 ?>
@@ -23,7 +24,7 @@ ob_start ();
             <td><?= $co->getCommentDate (); ?></td>
             <td><?= htmlspecialchars($co->getAuthor ()); ?></td>
             <td><?= htmlspecialchars($co->getComment ()); ?></td>
-            <td align="center"><a <a class="btn btn-admin  btn-danger btn-xs" href="adminCancelModerate&id=<?= $co->getId(); ?>"><i class="far fa-stop-circle"></i></a>
+            <td align="center"><a <a class="btn btn-admin  btn-danger btn-xs" href="adminCancelModerate&id=<?= $co->getId(); ?>" onclick="return confirm('Etes-vous sûr de vouloir annuler la modération du commentaire ?')"><i class="far fa-stop-circle"></i></a>
 
         </tr>
 

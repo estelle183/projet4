@@ -13,7 +13,7 @@ class AdminNewPasswordController
      * Show forgot password page
      */
     public function adminForgotPasswordPage() {
-        require ('src/View/admin/AdminForgotPassword.php');
+        require ('src/View/admin/adminForgotPassword.php');
     }
 
     /**
@@ -57,7 +57,7 @@ if ($token == $checkAdmin->getToken ()) {
     $date = new \DateTime();
     $dif = $date->diff($tokenDate);
     if ($dif->i < 60) {
-        require ('src/View/admin/AdminNewPassword.php');
+        require ('src/View/admin/adminNewPassword.php');
     } else {
         require ('src/View/erreur404.php');
     }

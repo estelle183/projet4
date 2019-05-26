@@ -1,3 +1,4 @@
+<?php $title = "Erreur 404"; ?>
 <?php
 ob_start ();
 

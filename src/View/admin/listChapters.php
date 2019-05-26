@@ -1,3 +1,4 @@
+<?php $title = "Liste des chapitres"; ?>
 <?php
 ob_start();
 ?>
