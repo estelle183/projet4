@@ -36,7 +36,7 @@ class ContactMail
 
             $mail->isHTML(true);
             $mail->Subject = $contact->getSubject();
-            $mail->Body = $userMail.'<br/>'.'Nom :'. $userName.'<br/>'.'Message :'. $userMessage;
+            $mail->Body = $userMail.'<br/>'.'Nom : '. $userName.'<br/>'.'Message : '. $userMessage;
             $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
 
             $mail->send();

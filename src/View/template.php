@@ -3,6 +3,9 @@
 <head>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="title" content="<?= $title ?>">
+    <meta name="description" content="">
+    <meta name="keywords" content="billet, alaska, livre, chapitres, Jean Forteroche">
     <title><?= $title ?></title>
 
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">

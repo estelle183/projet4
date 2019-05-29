@@ -24,17 +24,20 @@ The project integrates composing with an autoloader in PSR-4 and PHPMailer.
 - TinyMCE
 
 
-###### 1. Clone Github repositiory
+###### 1. Clone Github repositiory and Composer install
 
 
 git clone https://github.com/estelle183/projet4
+
+`composer install`
+
 
 
 ###### 2. Create a database for this project and inject this for create tables
 
 -- Table for Chapters
 
-CREATE TABLE IF NOT EXISTS `chapters` (
+    CREATE TABLE IF NOT EXISTS `chapters` (
 
     `id` int(11) NOT NULL,
     `title` varchar(255) NOT NULL,
@@ -44,7 +47,9 @@ CREATE TABLE IF NOT EXISTS `chapters` (
     `update_date` datetime DEFAULT NULL
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-CREATE TABLE IF NOT EXISTS `comments` (
+-- Table for Comments
+
+    CREATE TABLE IF NOT EXISTS `comments` (
 
     `id` int(11) NOT NULL,
     `chapter_id` int(11) NOT NULL,
@@ -55,7 +60,9 @@ CREATE TABLE IF NOT EXISTS `comments` (
     `moderate` tinyint(4) NOT NULL DEFAULT '0'  
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-CREATE TABLE `Administration` (
+-- Table for Administration
+
+    CREATE TABLE IF NOT EXISTS `Administration` (
 
     `id` int(11) NOT NULL,
     `email` varchar(255) NOT NULL,
@@ -65,7 +72,9 @@ CREATE TABLE `Administration` (
     `token_date` datetime DEFAULT NULL
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-CREATE TABLE `contact` (
+-- Table for Contact
+
+    CREATE TABLE IF NOT EXISTS `contact` (
 
     `id` int(11) NOT NULL,
     `name` varchar(255) NOT NULL,

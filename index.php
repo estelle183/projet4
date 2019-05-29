@@ -96,24 +96,22 @@ elseif ($url === 'contact') {
 }
 
 elseif ($url === 'contact-form') {
-    if(isset($_POST['name']) && isset($_POST['email']) && isset($_POST['subject']) && isset($_POST['message']) && isset($_POST['consent']))
-    {
-        if(!empty($_POST['name']) && !empty($_POST['email']) && !empty($_POST['subject']) && !empty($_POST['message']) && !empty($_POST['consent']) && $_POST['consent'] == 1)
-        {
-            if(preg_match ('#^[a-z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$#', $_POST['email']))
-            {
-            $contact = new ContactController();
-            $contact->sendContactForm ($_POST['name'], $_POST['email'], $_POST['subject'], $_POST['message'], $_POST['consent']);
+    if (isset($_POST['name']) && isset($_POST['email']) && isset($_POST['subject']) && isset($_POST['message']) && isset($_POST['consent'])) {
+        if (!empty($_POST['name']) && !empty($_POST['email']) && !empty($_POST['subject']) && !empty($_POST['message']) && !empty($_POST['consent']) && $_POST['consent'] == 1) {
+            if (preg_match ('#^[a-z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$#', $_POST['email'])) {
+                $contact = new ContactController();
+                $contact->sendContactForm ($_POST['name'], $_POST['email'], $_POST['subject'], $_POST['message'], $_POST['consent']);
+            } else {
+                $_SESSION['flashmail'] = 'L\'adresse email "' . $_POST['email'] . '" n\'est pas valide, recommencez !';
+                $flashMail = $_SESSION['flashmail'];
+                header ("location:" . $_SERVER['HTTP_REFERER']);
+            }
+        } else {
+            $error = new ErrorController();
+            $error->Error404 ();
         }
-            $_SESSION['flash'] = 'L\'adresse ' . $_POST['email'] . ' n\'est pas valide, recommencez !';
-            $flash = $_SESSION['flash'];
-            header("location:".  $_SERVER['HTTP_REFERER']);
     }
-} else {
-        $error = new ErrorController();
-        $error->Error404 ();
-    }
-    }
+}
 
 // ADMIN CONNECTION MANAGEMENT
 
