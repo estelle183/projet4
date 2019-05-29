@@ -10,6 +10,16 @@ ob_start ();
         <h2 class="heading-title">Formulaire de contact</h2>
     </div>
     <div class="form-group">
+        <div class="alert-success"> <?php if (isset($_SESSION['flash'])) {
+                echo $_SESSION['flash'];
+                unset($_SESSION['flash']);
+            } ?>
+        </div>
+        <div class="alert-danger"> <?php if (isset($_SESSION['flashmail'])) {
+                echo $_SESSION['flashmail'];
+                unset($_SESSION['flashmail']);
+            } ?>
+        </div>
 
 <form action="contact-form" method="post" >
     <div class="form-group">
@@ -18,7 +28,7 @@ ob_start ();
     </div>
     <div class="form-group">
         <label for="email">Email</label> :
-        <input type="email" name="email" id="email" class="form-control" required/>
+        <input type="text" name="email" id="email" class="form-control" required/>
     </div>
     <div class="form-group">
         <label for="subject">Sujet</label> :
@@ -37,12 +47,6 @@ ob_start ();
     <button type="submit" class="btn btn-primary">Envoyer</button>
 </form>
 
-    </div>
-
-    <div class="alert-success"> <?php if (isset($_SESSION['flash'])) {
-            echo $_SESSION['flash'];
-            unset($_SESSION['flash']);
-        } ?>
     </div>
 
 </div>
